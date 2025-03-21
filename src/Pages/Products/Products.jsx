@@ -35,7 +35,7 @@ const Products = () => {
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const res = await axios.get(`http://localhost:8100/api/v1/products/shopid?shopid=${shopId}`);
+            const res = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/products/shopid?shopid=${shopId}`);
             setProducts(res.data.products);
         } catch (error) {
             console.error('Error fetching products', error);
@@ -140,13 +140,13 @@ const Products = () => {
             setLoading(true);
             if (isEditing) {
                 await axios.put(
-                    `http://localhost:8100/api/v1/products/${selectedProductId}`,
+                    `https://icyflameltd-admin-app.vercel.app/api/v1/products/${selectedProductId}`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
             } else {
                 const response = await axios.post(
-                    `http://localhost:8100/api/v1/products`,
+                    `https://icyflameltd-admin-app.vercel.app/api/v1/products`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
@@ -189,7 +189,7 @@ const Products = () => {
 
         try {
             setLoading(true);
-            await axios.delete(`http://localhost:8100/api/v1/products/${id}`);
+            await axios.delete(`https://icyflameltd-admin-app.vercel.app/api/v1/products/${id}`);
             fetchProducts();
         } catch (error) {
             console.error('Error deleting product', error);

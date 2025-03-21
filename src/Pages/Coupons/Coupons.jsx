@@ -23,7 +23,7 @@ const Coupon = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get(`http://localhost:8100/api/v1/products/shopid?shopid=${shopId}`);
+            const response = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/products/shopid?shopid=${shopId}`);
             setProducts(response.data.products || []);
         } catch (error) {
             console.error('Error fetching products:', error.message);
@@ -32,7 +32,7 @@ const Coupon = () => {
 
     const fetchCoupons = async () => {
         try {
-            const response = await axios.get(`http://localhost:8100/api/v1/coupons/shop/${shopId}`);
+            const response = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/coupons/shop/${shopId}`);
             setCoupons(response.data || []);
         } catch (error) {
             console.error('Error fetching coupons:', error.message);
@@ -59,7 +59,7 @@ const Coupon = () => {
 
         try {
             setLoading(true);
-            const response = await axios.post('http://localhost:8100/api/v1/coupons/create', couponData);
+            const response = await axios.post('https://icyflameltd-admin-app.vercel.app/api/v1/coupons/create', couponData);
             setMessage('Coupon created successfully!');
 
             // Reset the form
@@ -84,7 +84,7 @@ const Coupon = () => {
         if (!window.confirm('Are you sure you want to delete this coupon?')) return;
 
         try {
-            await axios.delete(`http://localhost:8100/api/v1/coupons/delete/${couponId}`);
+            await axios.delete(`https://icyflameltd-admin-app.vercel.app/api/v1/coupons/delete/${couponId}`);
             setMessage('Coupon deleted successfully!');
             fetchCoupons();
         } catch (error) {

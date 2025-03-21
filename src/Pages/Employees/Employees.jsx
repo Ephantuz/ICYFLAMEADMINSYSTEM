@@ -26,7 +26,7 @@ const Employees = () => {
         try {
             setLoading(true);
             console.log("Fetching employees...");
-            const res = await axios.get("http://localhost:8100/api/v1/team");
+            const res = await axios.get("https://icyflameltd-admin-app.vercel.app/api/v1/team");
             console.log("Fetch successful. Data:", res.data);
 
             setEmployees(res.data);
@@ -63,12 +63,12 @@ const Employees = () => {
         try {
             if (isEditMode) {
                 console.log(`Updating employee ID: ${editingEmployeeId}`, employeeData);
-                const res = await axios.put(`http://localhost:8100/api/v1/team/${editingEmployeeId}`, employeeData);
+                const res = await axios.put(`https://icyflameltd-admin-app.vercel.app/api/v1/team/${editingEmployeeId}`, employeeData);
                 console.log("Update success:", res.data);
                 toast.success("Employee updated successfully");
             } else {
                 console.log("Creating new employee:", employeeData);
-                const res = await axios.post("http://localhost:8100/api/v1/team", employeeData);
+                const res = await axios.post("https://icyflameltd-admin-app.vercel.app/api/v1/team", employeeData);
                 console.log("Create success:", res.data);
                 toast.success("Employee added successfully");
             }
@@ -106,7 +106,7 @@ const Employees = () => {
 
         try {
             console.log("Deleting employee ID:", id);
-            const res = await axios.delete(`http://localhost:8100/api/v1/team/${id}`);
+            const res = await axios.delete(`https://icyflameltd-admin-app.vercel.app/api/v1/team/${id}`);
             console.log("Delete success:", res.data);
             toast.success("Employee deleted successfully");
 
