@@ -20,7 +20,7 @@ const Menu = () => {
                         <AiFillHome />
                         <span className="listItemTitle">Home</span>
                     </Link>
-                    <Link to='/transactions' className='listItem'>
+                    <Link to='/products' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Products</span>
                     </Link>
