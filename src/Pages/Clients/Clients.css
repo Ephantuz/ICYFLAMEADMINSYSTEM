@@ -1,0 +1,70 @@
+.client-table-container {
+  padding: 20px;
+  color: rgb(216, 216, 198);
+  background: rgb(7, 7, 21);
+  width: 100%;
+  max-width: 800px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(184, 184, 184, 0.2);
+  border-radius: 8px;
+}
+
+.client-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.client-table th,
+.client-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.client-table th {
+  background-color: rgba(216, 216, 198, 0.1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.client-table tr {
+  border-bottom: 1px solid rgba(184, 184, 184, 0.1);
+}
+
+.client-table tr:hover {
+  background-color: rgba(216, 216, 198, 0.05);
+}
+
+.client-table td img.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.client-table th:hover {
+  background-color: rgba(216, 216, 198, 0.2);
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 768px) {
+  .client-table-container {
+    padding: 10px;
+  }
+
+  .client-table th,
+  .client-table td {
+    padding: 8px 10px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,16 @@
+.revenue {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.revenue .title {
+  font-size: 26px;
+  color: gray;
+  font-weight: bolder;
+}
+.revenue .chart {
+  width: 100%;
+  height: 300px;
+}

@@ -1,0 +1,26 @@
+.Menu .menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.Menu .menu-item .title {
+  font-weight: bold;
+  font-size: 12px;
+  color: rgba(159, 159, 159, 0.358);
+}
+.menu-item .listItem {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+  color: rgba(255, 228, 196, 0.593);
+  font-size: 14px;
+  font-weight: bolder;
+}
+.menu-item .listItem:hover {
+  background: rgba(172, 172, 172, 0.555);
+}

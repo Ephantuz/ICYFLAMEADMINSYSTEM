@@ -1,0 +1,126 @@
+.orders-container {
+  color: #d8d8c6;
+  background-color: #070715;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.orders-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.orders-actions input {
+  padding: 8px 12px;
+  border: 1px solid #333;
+  background-color: #111;
+  color: #d8d8c6;
+  border-radius: 5px;
+}
+
+.orders-actions button {
+  background-color: #333;
+  color: #d8d8c6;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  border: 1px solid rgba(184, 184, 184, 0.2);
+  background-color: #0f0f1e;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.payment-mpesa {
+  background-color: #3ab54a;
+}
+
+.payment-pickup {
+  background-color: #f4a261;
+}
+
+.status-pending {
+  background-color: #f4a261;
+}
+
+.status-cancelled {
+  background-color: #e63946;
+}
+
+.status-fulfilled {
+  background-color: #2a9d8f;
+}
+
+.view-btn {
+  background-color: #1d1d2c;
+  color: #d8d8c6;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.order-details {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.details-box {
+  flex: 1 1 300px;
+  background-color: #151529;
+  padding: 10px 15px;
+  border: 1px solid rgba(184, 184, 184, 0.1);
+  border-radius: 8px;
+}
+
+.details-box h4 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.product-item {
+  margin-bottom: 10px;
+}
+
+.no-orders {
+  text-align: center;
+  color: #888;
+}

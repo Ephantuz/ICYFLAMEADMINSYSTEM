@@ -1,0 +1,48 @@
+.TopData {
+  padding: 0.5px;
+}
+.TopData h1 {
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.leading-p {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin-top: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.541);
+  padding: .3rem;
+  border-radius: 10px;
+}
+
+.p-profile {
+  display: flex;
+  gap: 5px;
+}
+.p-profile-img img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: rgb(251, 251, 251);
+  padding: 2px;
+  border-radius: 50%;
+}
+.p-profile-desc {
+  padding: 5px;
+}
+.p-title {
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.p-cat {
+  font-size: 14px;
+  /* text-align: center; */
+}
+
+.p-cost {
+  font-weight: bolder;
+  font-size: 16px;
+  color: rgb(126, 211, 126);
+}

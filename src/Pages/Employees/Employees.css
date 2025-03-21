@@ -1,0 +1,164 @@
+/* Employees.css */
+
+/* Base Container */
+.employees-container {
+  padding: 24px;
+  background: rgb(7, 7, 21);
+  /* min-height: 100vh; */
+  font-family: "Arial", sans-serif;
+  color: #f9fafb; /* Light text */
+  overflow-y: auto;
+  margin-bottom: 20vh;
+}
+
+/* Header */
+.employees-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.employees-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f9fafb; /* Light text */
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #08b43c; /* Indigo */
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #6366f1; /* Lighter Indigo */
+  transform: scale(1.02);
+}
+
+.btn-danger {
+  background-color: #dc2626; /* Red */
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #ef4444; /* Lighter Red */
+  transform: scale(1.02);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* Table Styles */
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0c0f13; /* Dark gray background */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 12px 16px;
+  text-align: left;
+  color: #f3f4f6; /* Light text */
+}
+
+.employees-table thead {
+  background: rgb(7, 7, 21);
+  color: #ffffff;
+}
+
+.employees-table tbody tr:nth-child(even) {
+  background: rgb(7, 7, 21); /* Same as table background */
+}
+
+.employees-table tbody tr:nth-child(odd) {
+  background: rgb(7, 7, 21); /* Slightly darker */
+}
+
+.employees-table tbody tr:hover {
+  background: rgb(7, 7, 21); /* Hover effect */
+}
+
+.employees-table td.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Dialog Styles */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  transform: translate(-50%, -50%);
+  background: #1f2937; /* Dialog dark background */
+  padding: 24px;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+}
+
+.dialog-header {
+  margin-bottom: 16px;
+}
+
+.dialog-header h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f9fafb; /* Light text */
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dialog-form input,
+.dialog-form select {
+  padding: 10px 12px;
+  border: 1px solid #4b5563; /* Subtle border */
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #374151; /* Input dark background */
+  color: #f9fafb; /* Light text */
+}
+
+.dialog-form input:focus,
+.dialog-form select:focus {
+  outline: none;
+  border-color: #6366f1; /* Indigo focus */
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}

@@ -1,0 +1,11 @@
+.totalVisits .title {
+  color: rgba(195, 195, 195, 0.706);
+  font-weight: bolder;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  text-align: left;
+  /* margin: 10vh 0; */
+}
