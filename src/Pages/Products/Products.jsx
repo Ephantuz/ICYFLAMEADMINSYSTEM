@@ -35,7 +35,7 @@ const Products = () => {
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const res = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/products/shopid?shopid=${shopId}`);
+            const res = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/products/shop?shopid=${shopId}`);
             setProducts(res.data.products);
         } catch (error) {
             console.error('Error fetching products', error);
@@ -354,10 +354,10 @@ const Products = () => {
             <div className={`products-grid ${formOpen ? 'blurred' : ''}`}>
                 {loading ? (
                     <p>Loading products...</p>
-                ) : products.length === 0 ? (
+                ) : products?.length === 0 ? (
                     <p>No products found.</p>
                 ) : (
-                    products.map((product) => (
+                    products?.map((product) => (
                         <div className="product-card" key={product._id}>
                             <img src={product.images[0]?.url || '/no-image.png'} alt={product.name} className="product-img" />
                             <h4>{product.name}</h4>
