@@ -33,16 +33,22 @@ const Products = () => {
     }, []);
 
     const fetchProducts = async () => {
+        if (!shopId) {
+            console.error('Shop ID is missing');
+            return;
+        }
+
         try {
             setLoading(true);
-            const res = await axios.get(`https://icyflameltd-admin-app.vercel.app/api/v1/products/shop?shopid=${shopId}`);
+            const res = await axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/products/shopid?shopid=${shopId}`);
             setProducts(res.data.products);
         } catch (error) {
-            console.error('Error fetching products', error);
+            console.error('Error fetching products:', error.response?.data?.message || error.message);
         } finally {
             setLoading(false);
         }
     };
+
 
     const handleInputChange = (e) => {
         const { name, value, type } = e.target;
@@ -140,13 +146,13 @@ const Products = () => {
             setLoading(true);
             if (isEditing) {
                 await axios.put(
-                    `https://icyflameltd-admin-app.vercel.app/api/v1/products/${selectedProductId}`,
+                    `https://icyflame-ltd-core.onrender.com/api/v1/products/${selectedProductId}`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
             } else {
                 const response = await axios.post(
-                    `https://icyflameltd-admin-app.vercel.app/api/v1/products`,
+                    `https://icyflame-ltd-core.onrender.com/api/v1/products`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
@@ -189,7 +195,7 @@ const Products = () => {
 
         try {
             setLoading(true);
-            await axios.delete(`https://icyflameltd-admin-app.vercel.app/api/v1/products/${id}`);
+            await axios.delete(`https://icyflame-ltd-core.onrender.com/api/v1/products/${id}`);
             fetchProducts();
         } catch (error) {
             console.error('Error deleting product', error);
