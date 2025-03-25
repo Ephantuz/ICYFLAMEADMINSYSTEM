@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const BASE_URL = "http://localhost:8100/api/v1/products"; // Assuming this is the base
+const BASE_URL = "https://icyflame-ltd-core.onrender.com/api/v1/products"; // Assuming this is the base
 
 const endpoints = {
     createProduct: `${BASE_URL}`,
