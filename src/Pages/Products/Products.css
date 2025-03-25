@@ -170,3 +170,6 @@
 .cancel-btn:hover {
   background-color: #d32f2f;
 }
+p{
+  color: white !important;
+}

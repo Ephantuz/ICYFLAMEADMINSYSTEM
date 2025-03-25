@@ -80,9 +80,9 @@ const Menu = () => {
                 </div>
                 <div className="menu-item">
                     <span className="title">Logs</span>
-                    <Link to='/Notes' className='listItem'>
+                    <Link to='/settings' className='listItem'>
                         <SiLogseq />
-                        <span className="listItemTitle">Notes</span>
+                        <span className="listItemTitle">Settings</span>
                     </Link>
                     <Link to='/logout' className='listItem'>
                         <BsBarChartLineFill />

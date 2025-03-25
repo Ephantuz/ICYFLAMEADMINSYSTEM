@@ -12,10 +12,19 @@ import Dispach from './Pages/Dispach/Dispach.jsx';
 import Navbar from './Components/Navbar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Menu from './Components/Menu/Menu.jsx'
-import Login from './Pages/Login/Login.jsx';
-import Register from './Pages/Register/Register.jsx';
+// import Login from './Pages/Login/Login.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+// import VerifyWorker from './components/Auth/VerifyWorker.jsx';
+import ProtectedLoginRoute from './Private/ProtectedLoginRoute.jsx';
+import ProtectedRegiterRoute from './Private/ProtectedRegiterRoute.jsx';
+import ProtectRoute from './Private/ProtectRoute.jsx';
 
+import LoginComponent from './components/Login/Login.jsx';
+import Register from './components/Register/Register.jsx';
+import VerifyVendor from './components/VerifyVendor/Verify.jsx';
+import ProfileSettings from './components/ProfileSettings/ProfileSettings.jsx';
 function App() {
 
   const Layout = () => {
@@ -43,85 +52,85 @@ function App() {
         {
           path: "/",
           element:
-            <Home />
+            <ProtectRoute><Home /></ProtectRoute>
           ,
         },
         {
           path: "/clients",
           element:
-            <Clients />
+            <ProtectRoute><Clients /></ProtectRoute>
           ,
         },
         {
           path: "/coupons",
           element:
-            <Coupons />
+            <ProtectRoute><Coupons /></ProtectRoute>
           ,
         },
         {
           path: "/salesincome",
           element:
-            <Orders />
+            <ProtectRoute><Orders /></ProtectRoute>
           ,
         },
         {
           path: "/products",
           element:
-            <Products />
+            <ProtectRoute><Products /></ProtectRoute>
           ,
         },
-        {
-          path: "/Orders",
-          element:
-            <Products />
-          ,
-        },
+        // {
+        //   path: "/Orders",
+        //   element:
+        //     <ProtectRoute><Products /></ProtectRoute>
+        //   ,
+        // },
         {
           path: "/dispach",
           element:
-            <Dispach />
+            <ProtectRoute><Dispach /></ProtectRoute>
           ,
         },
         {
           path: "/employees",
           element:
-            <Employees />
+            <ProtectRoute><Employees /></ProtectRoute>
           ,
         },
         {
           path: "/departments",
           element:
-            <Products />
+            <ProtectRoute><Products /></ProtectRoute>
           ,
         },
         {
           path: "/bonuses",
           element:
-            <Products />
+            <ProtectRoute><Products /></ProtectRoute>
           ,
         },
         {
-          path: "/Notes",
+          path: "/settings",
           element:
-            <Products />
+            <ProtectRoute><ProfileSettings /></ProtectRoute>
           ,
         },
         {
           path: "/logout",
           element:
-            <Products />
+            <ProtectRoute><Products /></ProtectRoute>
           ,
         },
         {
           path: "/brands",
           element:
-            <Users />
+            <ProtectRoute><Users /></ProtectRoute>
           ,
         },
         {
           path: "/partners",
           element:
-            <Users />
+            <ProtectRoute><Users /></ProtectRoute>
           ,
         },
         {
@@ -135,13 +144,13 @@ function App() {
     {
       path: "/login",
       element:
-        <Login />
+        <ProtectedLoginRoute><LoginComponent /></ProtectedLoginRoute>
       ,
     },
     {
       path: "/register",
       element:
-        <Register />
+        <ProtectedRegiterRoute><Register /></ProtectedRegiterRoute>
       ,
     },
     {
@@ -155,7 +164,21 @@ function App() {
 
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        draggable
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="dark"
+        className={'toast-show'}
+      />
+    </>
   );
 }
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Products.css';
 import { TfiClose } from "react-icons/tfi";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 const shopId = '679673c9f3a134d3d07e3b45';
 
 const initialFormState = () => ({
@@ -28,6 +29,10 @@ const Products = () => {
     const [formOpen, setFormOpen] = useState(false);
     const [images, setImages] = useState([]);
 
+    const { loggedIn } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const shopId = loggedIn?.user?.id
     useEffect(() => {
         fetchProducts();
     }, []);

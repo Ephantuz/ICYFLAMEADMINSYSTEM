@@ -1,0 +1,204 @@
+/* Main container */
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f3f3; /* Light Amazon-style background */
+  transition: all 0.4s ease;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Swipe Button for Login */
+.SwipeButton {
+  background-color: #f0c14b;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  color: #111;
+  border: 1px solid #a88734;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000000000;
+}
+
+.SwipeButton:hover {
+  background-color: #e2b33b;
+}
+
+/* Sign-up form animations */
+.SignUpForm {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  text-align: center;
+}
+
+.SignUpForm.slide-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Login card styling */
+.LoginCard {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Back button */
+.BodyBackSignTop {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #0066c0;
+  text-decoration: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.BodyBackSignTop:hover {
+  color: #e47911;
+}
+
+.BackSign {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+/* Form styling */
+.coolinput {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.coolinput .text {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.coolinput .input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.coolinput .input:focus {
+  border-color: #e47911;
+  outline: none;
+}
+
+/* Button Styling */
+.NavLogCover2 .BodyBackSign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0c14b;
+  padding: 12px 30px;
+  border: 1px solid #a88734;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #111;
+  transition: background-color 0.3s ease;
+}
+
+.NavLogCover2 .BodyBackSign:hover {
+  background-color: #e2b33b;
+}
+
+.NavLogCover2 .BackSign {
+  margin-right: 8px;
+}
+
+/* Or divider */
+.NavLogCover .or {
+  margin: 15px 0;
+  font-weight: bold;
+  font-size: 14px;
+  color: #666;
+}
+
+.NavLogCover p {
+  font-size: 12px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Loading and error text */
+p {
+  font-size: 14px;
+  color: #ff0000;
+}
+
+/* Create new account link */
+.NavLogCover .BodyBackSign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0c14b;
+  padding: 10px 25px;
+  border-radius: 6px;
+  border: 1px solid #a88734;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  color: #111;
+  transition: background-color 0.3s ease;
+}
+
+.NavLogCover .BodyBackSign:hover {
+  background-color: #e2b33b;
+}
+
+.LoginHighlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100%;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    ),
+    url("https://img.freepik.com/premium-photo/cosmetic-makeup-product-with-red-details-dark-background_7023-386081.jpg?w=1380"); /* Add your image URL here */
+  background-size: cover; /* Ensures the image covers the entire element */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+  /* z-index: -1; Places the image behind other content */
+}
+
+/* Make sure it works on smaller devices */
+@media screen and (max-width: 768px) {
+  .LoginHighlight {
+    background-size: cover; /* Ensures the image still covers smaller screens */
+    background-position: center;
+  }
+}
