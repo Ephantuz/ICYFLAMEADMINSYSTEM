@@ -8,9 +8,17 @@ import { GiSettingsKnobs } from 'react-icons/gi'
 import { BsDatabaseFillUp } from 'react-icons/bs'
 import { BsBarChartLineFill } from 'react-icons/bs'
 import { SiLogseq } from 'react-icons/si'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../features/Auth/AuthSlice'
 
 const Menu = () => {
+
+    // const location = useLocation(); // to track active route
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout()); // Dispatch the logout action
+    };
     return (
         <>
             <div className="Menu">
@@ -84,7 +92,7 @@ const Menu = () => {
                         <SiLogseq />
                         <span className="listItemTitle">Settings</span>
                     </Link>
-                    <Link to='/logout' className='listItem'>
+                    <Link to='/logout' className='listItem' onClick={handleLogout}>
                         <BsBarChartLineFill />
                         <span className="listItemTitle">Log Out</span>
                     </Link>

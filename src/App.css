@@ -7,28 +7,31 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+  /* margin-bottom: 2rem; */
 }
 
 .main-container {
   display: flex;
   height: 100vh;
+  overflow: auto;
   width: 100%;
+  margin: auto;
+  /* margin-bottom: 20rem !important; */
 }
 
 .menuContainer {
-  width: 10%;
+  width: 15%;
   padding: 5px 20px;
   border-right: 2px solid rgba(184, 184, 184, 0.106);
-
   /* Fixed menu */
   position: absolute;
   left: 0;
   top: 70px;
   bottom: 0;
-
   height: 100vh;
   overflow-y: auto;
   background: rgb(7, 7, 21);
+  margin-bottom: 10vh !important;
 }
 
 .contentContainer {
@@ -36,14 +39,14 @@
 
   margin-left: 14%; /* Offset to avoid the menu */
 
-  width: 90%;
+  width: 85%;
   height: 100vh;
   /* margin-left: 10% !important; */
 
   overflow-y: auto;
   /* background: white; */
   /* margin: auto; */
-  /* margin-bottom: 40vh !important; */
+  margin-bottom: 10vh !important;
 }
 body {
   background: rgb(7, 7, 21);

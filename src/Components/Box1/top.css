@@ -3,7 +3,7 @@
 }
 .TopData h1 {
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .leading-p {
@@ -33,11 +33,11 @@
 }
 .p-title {
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .p-cat {
-  font-size: 14px;
+  font-size: 12px;
   /* text-align: center; */
 }
 

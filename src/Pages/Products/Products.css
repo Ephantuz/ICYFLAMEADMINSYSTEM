@@ -173,3 +173,8 @@
 p{
   color: white !important;
 }
+
+img{
+  max-width: 200px !important;
+  max-height: 200px !important;
+}
