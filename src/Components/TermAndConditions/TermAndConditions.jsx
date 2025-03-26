@@ -20,9 +20,9 @@ function TermAndConditions() {
     const isReviewing = new URLSearchParams(location.search).get('review') === 'true';
 
     const pdfFiles = [
-        '/src/assets/Terms/01.pdf',
-        '/src/assets/Terms/02.pdf',
-        '/src/assets/Terms/03.pdf'
+        { file: '/src/assets/Terms/01.pdf', content: 'This is the content for step 1. Lorem ipsum dolor sit amet...' },
+        { file: '/src/assets/Terms/02.pdf', content: 'This is the content for step 2. Consectetur adipiscing elit...' },
+        { file: '/src/assets/Terms/03.pdf', content: 'This is the content for step 3. Sed do eiusmod tempor incididunt...' }
     ];
 
     useEffect(() => {
@@ -69,14 +69,11 @@ function TermAndConditions() {
 
     return (
         <div className="onboarding-container">
-            <iframe
-                src={pdfFiles[step - 1]}
-                width="100%"
-                height="500px"
-                title="Terms and Conditions"
-            ></iframe>
+            <div className="scrollable-content">
+                <p>{pdfFiles[step - 1].content}</p>
+            </div>
             <div className="onboarding-footer">
-                <a href={pdfFiles[step - 1]} download className="download-btn">Download</a>
+                <a href={pdfFiles[step - 1].file} download className="download-btn">Download PDF</a>
                 <button onClick={handleNext} className="agree-btn">Agree & Continue</button>
             </div>
         </div>
