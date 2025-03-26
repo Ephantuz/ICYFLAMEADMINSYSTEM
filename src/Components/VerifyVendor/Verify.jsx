@@ -3,8 +3,8 @@ import './verify.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-toastify";
-import Spinner from './../Spinner/Spinner.jsx';
 import { reset, verifyUser } from '../../features/Auth/AuthSlice';
+import Spinner from '../../Components/Spinner/Spinner';
 
 function Verify() {
     const dispatch = useDispatch();

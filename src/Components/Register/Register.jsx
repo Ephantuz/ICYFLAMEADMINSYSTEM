@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import './Register.css'
 import { toast } from "react-toastify"
-import Spinner from './../../components/Spinner/Spinner.jsx';
+import Spinner from './../../Components/Spinner/Spinner.jsx';
 import { register, reset } from '../../features/Auth/AuthSlice';
 
 const RegisterShop = () => {

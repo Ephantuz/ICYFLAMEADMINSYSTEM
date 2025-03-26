@@ -23,7 +23,7 @@ import ProtectRoute from './Private/ProtectRoute.jsx';
 
 import LoginComponent from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
-import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
+// import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 function App() {
 
