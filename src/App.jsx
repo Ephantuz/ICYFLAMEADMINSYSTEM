@@ -21,10 +21,10 @@ import ProtectedLoginRoute from './Private/ProtectedLoginRoute.jsx';
 import ProtectedRegiterRoute from './Private/ProtectedRegiterRoute.jsx';
 import ProtectRoute from './Private/ProtectRoute.jsx';
 
-import LoginComponent from './components/Login/Login.jsx';
-import Register from './components/Register/Register.jsx';
-import VerifyVendor from './components/VerifyVendor/Verify.jsx';
-import ProfileSettings from './components/ProfileSettings/ProfileSettings.jsx';
+import LoginComponent from '.Components/Login/Login.jsx';
+import Register from './Components/Register/Register.jsx';
+import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
+import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 function App() {
 
   const Layout = () => {
