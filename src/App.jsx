@@ -12,6 +12,7 @@ import Dispach from './Pages/Dispach/Dispach.jsx';
 import Navbar from './Components/Navbar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Menu from './Components/Menu/Menu.jsx'
+import TermsAndConditions from './Components/TermAndConditions/TermAndConditions.jsx'
 // import Login from './Pages/Login/Login.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,10 +21,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProtectedLoginRoute from './Private/ProtectedLoginRoute.jsx';
 import ProtectedRegiterRoute from './Private/ProtectedRegiterRoute.jsx';
 import ProtectRoute from './Private/ProtectRoute.jsx';
+import OnboardingProtectRoute from './Private/ProtectOnboardingRoute.jsx';
 
 import LoginComponent from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
-// import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
+import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 function App() {
 
@@ -39,7 +41,7 @@ function App() {
             <Outlet />
           </div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     )
   }
@@ -47,119 +49,94 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectRoute>
+          <OnboardingProtectRoute>
+            <Layout />
+          </OnboardingProtectRoute>
+        </ProtectRoute>
+      ),
       children: [
         {
           path: "/",
-          element:
-            <ProtectRoute><Home /></ProtectRoute>
-          ,
+          element: <Home />,
         },
         {
           path: "/clients",
-          element:
-            <ProtectRoute><Clients /></ProtectRoute>
-          ,
+          element: <Clients />,
         },
         {
           path: "/coupons",
-          element:
-            <ProtectRoute><Coupons /></ProtectRoute>
-          ,
+          element: <Coupons />,
         },
         {
           path: "/salesincome",
-          element:
-            <ProtectRoute><Orders /></ProtectRoute>
-          ,
+          element: <Orders />,
         },
         {
           path: "/products",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
-        // {
-        //   path: "/Orders",
-        //   element:
-        //     <ProtectRoute><Products /></ProtectRoute>
-        //   ,
-        // },
         {
           path: "/dispach",
-          element:
-            <ProtectRoute><Dispach /></ProtectRoute>
-          ,
+          element: <Dispach />,
         },
         {
           path: "/employees",
-          element:
-            <ProtectRoute><Employees /></ProtectRoute>
-          ,
+          element: <Employees />,
         },
         {
           path: "/departments",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
         {
           path: "/bonuses",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
         {
           path: "/settings",
-          element:
-            <ProtectRoute><ProfileSettings /></ProtectRoute>
-          ,
+          element: <ProfileSettings />,
         },
         {
           path: "/logout",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
         {
           path: "/brands",
-          element:
-            <ProtectRoute><Users /></ProtectRoute>
-          ,
+          element: <Users />,
         },
         {
           path: "/partners",
-          element:
-            <ProtectRoute><Users /></ProtectRoute>
-          ,
+          element: <Users />,
         },
         {
           path: "/*",
-          element:
-            <div className="err">Error</div>
-          ,
-        }
-      ]
+          element: <div className="err">Error</div>,
+        },
+      ],
+    },
+    {
+      path: "/onboarding",
+      element: <TermsAndConditions />,
     },
     {
       path: "/login",
-      element:
-        <ProtectedLoginRoute><LoginComponent /></ProtectedLoginRoute>
-      ,
+      element: <ProtectedLoginRoute><LoginComponent /></ProtectedLoginRoute>,
     },
     {
       path: "/register",
-      element:
-        <ProtectedRegiterRoute><Register /></ProtectedRegiterRoute>
-      ,
+      element: <ProtectedRegiterRoute><Register /></ProtectedRegiterRoute>,
+    },
+    {
+      path: "/shop/activation/:token",
+      element: <VerifyVendor />,
     },
     {
       path: "/*",
-      element:
-        <div className="err">Error</div>
-      ,
+      element: <div className="err">Error</div>,
     },
-  ])
+  ]);
+
 
 
 

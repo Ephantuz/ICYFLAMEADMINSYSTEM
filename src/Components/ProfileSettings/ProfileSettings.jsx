@@ -273,7 +273,6 @@ const ProfileSettings = () => {
                                         name="newPassword"
                                         value={newPassword}
                                         placeholder="New Password"
-                                        required
                                         onChange={onChange}
                                     />
                                     <div className="icon-wrapper">

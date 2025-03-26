@@ -92,6 +92,10 @@ const Menu = () => {
                         <SiLogseq />
                         <span className="listItemTitle">Settings</span>
                     </Link>
+                    <Link to='/onboarding?review=true' className='listItem'>
+                        <SiLogseq />
+                        <span className="listItemTitle">Terms & Conditions</span>
+                    </Link>
                     <Link to='/logout' className='listItem' onClick={handleLogout}>
                         <BsBarChartLineFill />
                         <span className="listItemTitle">Log Out</span>
