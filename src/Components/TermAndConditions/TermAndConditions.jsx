@@ -13,12 +13,17 @@ function TermAndConditions() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Get user details from Redux
     const { loggedIn } = useSelector((state) => state.auth);
     const user = loggedIn?.user;
     const email = user?.email;
 
     const isReviewing = new URLSearchParams(location.search).get('review') === 'true';
+
+    const pdfFiles = [
+        '/src/assets/Terms/01.pdf',
+        '/src/assets/Terms/02.pdf',
+        '/src/assets/Terms/03.pdf'
+    ];
 
     useEffect(() => {
         if (!loggedIn) {
@@ -34,7 +39,7 @@ function TermAndConditions() {
         axios.get(`/onboarding/${email}`)
             .then(response => {
                 if (response.data.hasOnboarded && !isReviewing) {
-                    navigate('/');  // Redirect only if not reviewing
+                    navigate('/');
                 } else {
                     setLoading(false);
                 }
@@ -43,12 +48,12 @@ function TermAndConditions() {
                 toast.error(error.response?.data?.message || 'Error checking onboarding status');
                 setLoading(false);
             });
-    }, [navigate, email, loggedIn, isReviewing]); // Include `isReviewing` dependency
+    }, [navigate, email, loggedIn, isReviewing]);
 
     const handleNext = () => {
         if (!email) return toast.error('User email missing.');
 
-        if (step < 3) {
+        if (step < pdfFiles.length) {
             setStep(prev => prev + 1);
         } else {
             axios.post('/onboarding/complete', { email })
@@ -64,11 +69,16 @@ function TermAndConditions() {
 
     return (
         <div className="onboarding-container">
-            {step === 1 && <div className="onboarding-card"><p>Step 1: Read this first document.</p></div>}
-            {step === 2 && <div className="onboarding-card"><p>Step 2: Read this second document.</p></div>}
-            {step === 3 && <div className="onboarding-card"><p>Step 3: Final agreement.</p></div>}
-
-            <button onClick={handleNext} className="agree-btn">Agree & Continue</button>
+            <iframe
+                src={pdfFiles[step - 1]}
+                width="100%"
+                height="500px"
+                title="Terms and Conditions"
+            ></iframe>
+            <div className="onboarding-footer">
+                <a href={pdfFiles[step - 1]} download className="download-btn">Download</a>
+                <button onClick={handleNext} className="agree-btn">Agree & Continue</button>
+            </div>
         </div>
     );
 }
