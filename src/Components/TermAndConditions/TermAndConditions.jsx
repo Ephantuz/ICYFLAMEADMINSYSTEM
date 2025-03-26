@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import './TermAndConditions.css';
 
-axios.defaults.baseURL = 'http://localhost:8100/api/v1/auth/vendors';
+axios.defaults.baseURL = 'https://icyflame-ltd-core.onrender.com/api/v1/auth/vendors';
 
 function TermAndConditions() {
     const [step, setStep] = useState(1);

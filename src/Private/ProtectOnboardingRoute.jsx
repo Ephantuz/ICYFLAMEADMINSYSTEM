@@ -12,7 +12,7 @@ const OnboardingProtectRoute = ({ children }) => {
 
     useEffect(() => {
         if (loggedIn && loggedIn.user?.email) {
-            axios.get(`http://localhost:8100/api/v1/auth/vendors/onboarding/${loggedIn.user.email}`)
+            axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/auth/vendors/onboarding/${loggedIn.user.email}`)
                 .then(response => {
                     setOnboardingStatus(response.data.hasOnboarded);
                 })
