@@ -1,132 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import './Orders.css';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment-timezone';
+import './Orders.css';
+import { fetchOrders } from '../../features/Orders/Orders';
 
 const Orders = () => {
-    // Mock orders fetched from backend
-    const [orders, setOrders] = useState([
-        {
-            _id: '67b323a7acefe50c7c221ce9',
-            user: '677c046e60875b5befdfbfae',
-            products: [
-                {
-                    name: 'Hyaluronic Serum',
-                    quantity: 1,
-                    price: 2800,
-                    size: '30',
-                    _id: '67b323a7acefe50c7c221cea'
-                }
-            ],
-            totalPrice: 3066.48,
-            shippingAddress: {
-                name: 'Ephantus Mwangi 2',
-                mobileNo: '0711776266',
-                houseNo: 'b01',
-                street: 'nairobi',
-                landmark: 'Quickmat',
-                postalCode: '00100'
-            },
-            paymentMethod: 'mpesa',
-            paymentStatus: 'Pending',
-            deliveryfee: '150',
-            deliveryDuration: 'Free Delivery',
-            deliveryLocation: 'Nairobi',
-            deliveryStatus: 'Pending',
-            accountReference: 'ORDER-+254711776266-1739793295216-4760',
-            phoneUsed: '+254711776266',
-            createdAt: 1739793319265
-        },
-        {
-            _id: '67b323a7acefe50c7c221ce7',
-            user: '677c046e60875b5befdfbfbe',
-            products: [
-                {
-                    name: 'Hyaluronic Serum',
-                    quantity: 1,
-                    price: 2800,
-                    size: '30',
-                    _id: '67b323a7acefe50c7c221cea'
-                }
-            ],
-            totalPrice: 3066.48,
-            shippingAddress: {
-                name: 'Mike Liope',
-                mobileNo: '0711776266',
-                houseNo: 'b01',
-                street: 'nairobi',
-                landmark: 'Quickmat',
-                postalCode: '00100'
-            },
-            paymentMethod: 'mpesa',
-            paymentStatus: 'cancelled',
-            deliveryfee: '150',
-            deliveryDuration: 'Free Delivery',
-            deliveryLocation: 'Nairobi',
-            deliveryStatus: 'Pending',
-            accountReference: 'ORDER-+254711776266-1239793295216-4760',
-            phoneUsed: '+254711776266',
-            createdAt: 1739793319265
-        },
-        {
-            _id: '67b323a7acefe50c7c221ce6',
-            user: '677c046e60875b5befdfbfce',
-            products: [
-                {
-                    name: 'Hyaluronic Serum',
-                    quantity: 1,
-                    price: 2800,
-                    size: '30',
-                    _id: '67b323a7acefe50c7c221cea'
-                }
-            ],
-            totalPrice: 3066.48,
-            shippingAddress: {
-                name: 'Peter Mwangi',
-                mobileNo: '0711776266',
-                houseNo: 'b01',
-                street: 'nairobi',
-                landmark: 'Quickmat',
-                postalCode: '00100'
-            },
-            paymentMethod: 'payonpickup',
-            paymentStatus: 'Pending',
-            deliveryfee: '150',
-            deliveryDuration: 'Free Delivery',
-            deliveryLocation: 'Nairobi',
-            deliveryStatus: 'fulfilled',
-            accountReference: 'ORDER-+254711776266-1339793295216-4760',
-            phoneUsed: '+254711776266',
-            createdAt: 1739793319265
-        },
-        // Add more sample orders if needed
-    ]);
+    const dispatch = useDispatch();
+    const { orders, status, error } = useSelector((state) => state.orders);
 
     const [searchTerm, setSearchTerm] = useState('');
     const [sortAscending, setSortAscending] = useState(true);
     const [expandedOrderId, setExpandedOrderId] = useState(null);
 
     useEffect(() => {
-        // You can replace this with actual API fetch
-        // fetchOrders();
-    }, []);
+        dispatch(fetchOrders());
+    }, [dispatch]);
 
     const toggleExpand = (orderId) => {
-        if (expandedOrderId === orderId) {
-            setExpandedOrderId(null);
-        } else {
-            setExpandedOrderId(orderId);
-        }
+        setExpandedOrderId(expandedOrderId === orderId ? null : orderId);
     };
 
     const handleSort = () => {
-        const sortedOrders = [...orders].sort((a, b) => {
-            if (sortAscending) {
-                return a.accountReference.localeCompare(b.accountReference);
-            } else {
-                return b.accountReference.localeCompare(a.accountReference);
-            }
-        });
-        setOrders(sortedOrders);
         setSortAscending(!sortAscending);
     };
 
@@ -134,33 +28,33 @@ const Orders = () => {
         setSearchTerm(e.target.value);
     };
 
-    const filteredOrders = orders.filter((order) => {
-        const referenceMatch = order.accountReference.includes(searchTerm);
-        const nameMatch = order.shippingAddress.name.toLowerCase().includes(searchTerm.toLowerCase());
-        return referenceMatch || nameMatch;
-    });
+    const filteredOrders = [...orders]
+        .filter((order) => {
+            const referenceMatch = order.accountReference?.includes(searchTerm);
+            const nameMatch = order.shippingAddress?.name?.toLowerCase().includes(searchTerm.toLowerCase());
+            return referenceMatch || nameMatch;
+        })
+        .sort((a, b) =>
+            sortAscending
+                ? a.accountReference?.localeCompare(b.accountReference)
+                : b.accountReference?.localeCompare(a.accountReference)
+        );
+
 
     const getPaymentMethodClass = (method) => {
         switch (method.toLowerCase()) {
-            case 'mpesa':
-                return 'payment-mpesa';
-            case 'payonpickup':
-                return 'payment-pickup';
-            default:
-                return '';
+            case 'mpesa': return 'payment-mpesa';
+            case 'payonpickup': return 'payment-pickup';
+            default: return '';
         }
     };
 
     const getPaymentStatusClass = (status) => {
         switch (status.toLowerCase()) {
-            case 'pending':
-                return 'status-pending';
-            case 'cancelled':
-                return 'status-cancelled';
-            case 'fulfilled':
-                return 'status-fulfilled';
-            default:
-                return '';
+            case 'pending': return 'status-pending';
+            case 'cancelled': return 'status-cancelled';
+            case 'fulfilled': return 'status-fulfilled';
+            default: return '';
         }
     };
 
@@ -181,8 +75,11 @@ const Orders = () => {
                 </div>
             </div>
 
+            {status === 'loading' && <p className="loading">Loading orders...</p>}
+            {status === 'failed' && <p className="error">Error: {error}</p>}
+
             <div className="orders-list">
-                {filteredOrders.length === 0 ? (
+                {filteredOrders.length === 0 && status === 'succeeded' ? (
                     <p className="no-orders">No orders found.</p>
                 ) : (
                     filteredOrders.map((order) => (
@@ -220,7 +117,16 @@ const Orders = () => {
                                                 <p><strong>Name:</strong> {product.name}</p>
                                                 <p><strong>Quantity:</strong> {product.quantity}</p>
                                                 <p><strong>Price:</strong> KES {product.price}</p>
-                                                <p><strong>Size:</strong> {product.size} ml</p>
+                                                <p><strong>Size:</strong> {product.size} </p>
+
+                                                <br />
+                                                <h3>Shop Details</h3>
+                                                <p><strong>Shop Name:</strong> {product.shopDetails.shopName}</p>
+                                                <p><strong>Email:</strong> {product.shopDetails.email}</p>
+                                                <p><strong>Operating Hours:</strong> KES {product.shopDetails.operatingHours}</p>
+                                                <p><strong>County:</strong> {product.shopDetails.county}</p>
+                                                <p><strong>Phone Number:</strong> {product.shopDetails.phoneNumber}</p>
+                                                <p><strong>Alternative Phone Number:</strong> {product.shopDetails.alternativePhoneNumber}</p>
                                             </div>
                                         ))}
                                     </div>

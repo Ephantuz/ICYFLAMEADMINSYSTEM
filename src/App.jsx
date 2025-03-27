@@ -12,6 +12,7 @@ import Dispach from './Pages/Dispach/Dispach.jsx';
 import Navbar from './Components/Navbar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Menu from './Components/Menu/Menu.jsx'
+import AdminPayments from './Components/AdminPayments/AdminPayments.jsx'
 import TermsAndConditions from './Components/TermAndConditions/TermAndConditions.jsx'
 // import Login from './Pages/Login/Login.jsx';
 import { ToastContainer } from 'react-toastify';
@@ -68,6 +69,10 @@ function App() {
         {
           path: "/coupons",
           element: <Coupons />,
+        },
+        {
+          path: "/adminpayments",
+          element: <AdminPayments />,
         },
         {
           path: "/salesincome",

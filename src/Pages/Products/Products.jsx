@@ -342,7 +342,7 @@ const Products = () => {
                             {images.map((image, index) => (
                                 <div key={index} className="image-item">
                                     <img src={image} alt={`Preview ${index}`} />
-                                    <TfiClose className='removeSizeBTN' onClick={() => removeImage(index)} />
+                                    <TfiClose className='removeImgBtn' onClick={() => removeImage(index)} />
                                 </div>
                             ))}
                         </div>

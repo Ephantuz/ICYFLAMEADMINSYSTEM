@@ -107,7 +107,7 @@
   flex: 1 1 300px;
   background-color: #151529;
   padding: 10px 15px;
-  border: 1px solid rgba(184, 184, 184, 0.1);
+  border: 1px solid rgba(245, 245, 245, 0.1);
   border-radius: 8px;
 }
 
@@ -118,6 +118,9 @@
 
 .product-item {
   margin-bottom: 10px;
+  border: 1px solid rgba(245, 245, 245, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .no-orders {

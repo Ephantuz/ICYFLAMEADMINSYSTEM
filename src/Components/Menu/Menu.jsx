@@ -35,6 +35,10 @@ const Menu = () => {
                 </div>
                 <div className="menu-item">
                     <span className="title">Accounts</span>
+                    <Link to='/adminpayments' className='listItem'>
+                        <FaUserAlt />
+                        <span className="listItemTitle">Payments Summary</span>
+                    </Link>
                     <Link to='/salesincome' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Sales&Orders</span>

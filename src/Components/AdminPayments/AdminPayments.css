@@ -1,0 +1,105 @@
+.admin-payments {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  color: white;
+  background-color: #1a1a1a; /* Dark background */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.summary-box {
+  background: #242424;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.shop-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.shop-card {
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.shop-card:hover {
+  transform: scale(1.02);
+}
+
+.shop-card h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ff4081; /* Pinkish color */
+}
+
+.shop-card p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.order-earnings {
+  margin-top: 10px;
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.order-earnings h5 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.order-item {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .admin-payments {
+    padding: 15px;
+  }
+
+  .summary-box {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .shop-card {
+    padding: 10px;
+  }
+
+  .shop-card h4 {
+    font-size: 18px;
+  }
+
+  .shop-card p {
+    font-size: 14px;
+  }
+}

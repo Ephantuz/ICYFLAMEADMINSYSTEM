@@ -12,7 +12,7 @@ function TermAndConditions() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-
+    const [submitting, setSubmitting] = useState(false);
     const { loggedIn } = useSelector((state) => state.auth);
     const user = loggedIn?.user;
     const email = user?.email;
@@ -56,12 +56,14 @@ function TermAndConditions() {
         if (step < pdfFiles.length) {
             setStep(prev => prev + 1);
         } else {
+            setSubmitting(true); // Start loading
             axios.post('/onboarding/complete', { email })
                 .then(() => {
                     toast.success('Onboarding completed!');
                     navigate('/');
                 })
-                .catch(() => toast.error('Failed to complete onboarding.'));
+                .catch(() => toast.error('Failed to complete onboarding.'))
+                .finally(() => setSubmitting(false)); // Stop loading
         }
     };
 
@@ -74,7 +76,14 @@ function TermAndConditions() {
             </div>
             <div className="onboarding-footer">
                 <a href={pdfFiles[step - 1].file} download className="download-btn">Download PDF</a>
-                <button onClick={handleNext} className="agree-btn">Agree & Continue</button>
+                <button
+                    onClick={handleNext}
+                    className="agree-btn"
+                    disabled={submitting}
+                >
+                    {submitting ? 'Updating...' : 'Agree & Continue'}
+                </button>
+
             </div>
         </div>
     );
