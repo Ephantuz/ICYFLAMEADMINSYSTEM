@@ -7,7 +7,7 @@ export const fetchAdminPayments = createAsyncThunk(
     "adminPayments/fetchAdminPayments",
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:8100/api/v1/orders/admin/payment', {
+            const response = await axios.get('https://icyflame-ltd-core.onrender.com/api/v1/orders/admin/payment', {
                 withCredentials: true, // Ensure cookies are sent
             });
             return response.data;

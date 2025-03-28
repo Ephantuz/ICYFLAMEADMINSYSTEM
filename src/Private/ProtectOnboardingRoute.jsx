@@ -29,7 +29,7 @@ const OnboardingProtectRoute = ({ children }) => {
     if (isLoading || onboardingStatus === null) {
         return <div>Loading...</div>;
     }
-
+    
     // Redirect if the user has NOT onboarded
     if (!onboardingStatus) {
         return <Navigate to="/onboarding" replace />;

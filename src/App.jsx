@@ -14,11 +14,8 @@ import Footer from './Components/Footer/Footer.jsx'
 import Menu from './Components/Menu/Menu.jsx'
 import AdminPayments from './Components/AdminPayments/AdminPayments.jsx'
 import TermsAndConditions from './Components/TermAndConditions/TermAndConditions.jsx'
-// import Login from './Pages/Login/Login.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// import VerifyWorker from './components/Auth/VerifyWorker.jsx';
 import ProtectedLoginRoute from './Private/ProtectedLoginRoute.jsx';
 import ProtectedRegiterRoute from './Private/ProtectedRegiterRoute.jsx';
 import ProtectRoute from './Private/ProtectRoute.jsx';
@@ -52,9 +49,9 @@ function App() {
       path: "/",
       element: (
         <ProtectRoute>
-          <OnboardingProtectRoute>
+          {/* <OnboardingProtectRoute> */}
             <Layout />
-          </OnboardingProtectRoute>
+          {/* </OnboardingProtectRoute> */}
         </ProtectRoute>
       ),
       children: [

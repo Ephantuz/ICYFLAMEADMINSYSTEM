@@ -4,20 +4,18 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 
+
+
 // Async thunk to fetch orders
-export const fetchOrders = createAsyncThunk(
-    'orders/fetchOrders',
-    async (_, { rejectWithValue }) => {
-        try {
-            const response = await axios.get('http://localhost:8100/api/v1/orders/admin', {
-                withCredentials: true, // Ensure cookies are sent
-            });
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response?.data || 'Failed to fetch orders');
-        }
+export const fetchOrders = createAsyncThunk('orders/fetchOrders', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get('http://localhost:8100/api/v1/finance');
+
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
     }
-);
+});
 
 
 // // Async thunk to delete an order
@@ -52,12 +50,12 @@ const ordersSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
             })
-            // .addCase(deleteOrder.fulfilled, (state, action) => {
-            //     state.orders = state.orders.filter(order => order.id !== action.payload);
-            // })
-            // .addCase(deleteOrder.rejected, (state) => {
-            //     state.isError = true;
-            // });
+        // .addCase(deleteOrder.fulfilled, (state, action) => {
+        //     state.orders = state.orders.filter(order => order.id !== action.payload);
+        // })
+        // .addCase(deleteOrder.rejected, (state) => {
+        //     state.isError = true;
+        // });
     },
 });
 
