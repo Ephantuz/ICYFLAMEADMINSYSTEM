@@ -1,32 +1,26 @@
 // src/redux/ordersSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 
 
-
-// Async thunk to fetch orders
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async (_, thunkAPI) => {
     try {
-        const response = await axios.get('http://localhost:8100/api/v1/finance');
+        const response = await axios.get('https://icyflame-ltd-core.onrender.com/api/v1/finance/admin', {
+            withCredentials: true // Send cookies
+        });
 
+        console.log("🔹 Response Data:", response.data);
         return response.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+        console.log("❌ Axios Error:", error.response?.data || error.message);
+        return thunkAPI.rejectWithValue(error.response?.data || "An error occurred");
     }
 });
 
 
-// // Async thunk to delete an order
-// export const deleteOrder = createAsyncThunk('orders/deleteOrder', async (orderId, { rejectWithValue }) => {
-//     try {
-//         await axios.delete(`/api/orders/${orderId}`);
-//         return orderId;
-//     } catch (error) {
-//         return rejectWithValue(error.response?.data || 'Failed to delete order');
-//     }
-// });
+
 
 const ordersSlice = createSlice({
     name: 'orders',

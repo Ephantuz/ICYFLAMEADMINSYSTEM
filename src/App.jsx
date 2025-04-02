@@ -25,6 +25,7 @@ import LoginComponent from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
 import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
+import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
 function App() {
 
   const Layout = () => {
@@ -70,6 +71,10 @@ function App() {
         {
           path: "/adminpayments",
           element: <AdminPayments />,
+        },
+        {
+          path: "/processpayments",
+          element: <HandlePayments />,
         },
         {
           path: "/salesincome",

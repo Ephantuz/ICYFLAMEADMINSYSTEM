@@ -23,16 +23,16 @@ const AdminPayments = () => {
             {!loading && !error && (
                 <>
                     <div className="summary-box">
-                        <h3>Total Tax Earnings</h3>
+                        <h3>Vendors Tax Earnings</h3>
                         <p>KES {totalTaxEarnings.toFixed(2)}</p>
                     </div>
 
                     <div className="summary-box">
-                        <h3>Total Delivery Earnings</h3>
+                        <h3>Total Deliveries Earnings</h3>
                         <p>KES {totalDeliveryEarnings.toFixed(2)}</p>
                     </div>
                     <div className="summary-box">
-                        <h3>Total Delivery Earnings</h3>
+                        <h3>Total Clients Earnings</h3>
                         <p>KES {totalClientTaxEarnings.toFixed(2)}</p>
                     </div>
 

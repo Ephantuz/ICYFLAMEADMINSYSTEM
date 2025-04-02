@@ -39,6 +39,10 @@ const Menu = () => {
                         <FaUserAlt />
                         <span className="listItemTitle">Payments Summary</span>
                     </Link>
+                    <Link to='/processpayments' className='listItem'>
+                        <FaUserAlt />
+                        <span className="listItemTitle">Handle Payments</span>
+                    </Link>
                     <Link to='/salesincome' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Sales&Orders</span>
