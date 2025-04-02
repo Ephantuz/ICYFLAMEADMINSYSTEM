@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-axios.defaults.withCredentials = true;
 
 // Async Thunks
 export const processVendorPayment = createAsyncThunk(
     'payments/processVendorPayment',
     async (paymentData, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post('http://localhost:8100/api/v1/finance/payments/process', paymentData);
+            const { data } = await axios.post('https://icyflame-ltd-core.onrender.com/api/v1/finance/payments/process', paymentData, {
+                withCredentials: true,
+            });
             return data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -19,7 +20,9 @@ export const getVendorPaymentSummary = createAsyncThunk(
     'payments/getVendorPaymentSummary',
     async (shopId, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`http://localhost:8100/api/v1/vendor/${shopId}`);
+            const { data } = await axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/vendor/${shopId}`, {
+                withCredentials: true,
+            });
             return data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -31,7 +34,9 @@ export const getAdminPaymentDashboard = createAsyncThunk(
     'payments/getAdminPaymentDashboard',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('http://localhost:8100/api/v1/admin/payment-dashboard');
+            const { data } = await axios.get('https://icyflame-ltd-core.onrender.com/api/v1/admin/payment-dashboard', {
+                withCredentials: true,
+            });
             return data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -43,7 +48,9 @@ export const getOrderPayments = createAsyncThunk(
     'payments/getOrderPayments',
     async (orderId, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`http://localhost:8100/api/v1/finance/payments/order/${orderId}`);
+            const { data } = await axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/finance/payments/order/${orderId}`, {
+                withCredentials: true,
+            });
             return data;
         } catch (error) {
             return rejectWithValue(error.response.data);

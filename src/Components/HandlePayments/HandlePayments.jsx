@@ -213,24 +213,24 @@ const OrderPayments = () => {
                     {/* Payment Breakdown */}
                     {orderPayments.payments?.length > 0 && (
                         <>
-                            <Typography variant="h5" gutterBottom>Payment Breakdown</Typography>
+                            <h3 variant="h5" gutterBottom>Payment Breakdown</h3>
                             <Grid container spacing={3}>
                                 {orderPayments.payments.map((payment) => (
                                     <Grid item xs={12} md={6} key={payment._id}>
                                         <Card>
                                             <CardContent>
-                                                <Typography variant="h6" component="h3">
+                                                <h3 variant="h6" component="h3" >
                                                     {payment.shopId?.shopName || 'Unknown Shop'}
-                                                </Typography>
-                                                <Typography>Product Amount: KES {payment.breakdown?.productAmount?.toFixed(2) || '0.00'}</Typography>
-                                                <Typography>Commission: KES {payment.breakdown?.commissionAmount?.toFixed(2) || '0.00'}</Typography>
-                                                <Typography>Net Amount: KES {payment.amount?.toFixed(2) || '0.00'}</Typography>
-                                                <Typography>Status: {payment.status || 'Pending'}</Typography>
+                                                </h3>
+                                                <h3>Product Amount: KES {payment.breakdown?.productAmount?.toFixed(2) || '0.00'}</h3>
+                                                <h3>Commission: KES {payment.breakdown?.commissionAmount?.toFixed(2) || '0.00'}</h3>
+                                                <h3>Net Amount: KES {payment.amount?.toFixed(2) || '0.00'}</h3>
+                                                <h3>Status: {payment.status || 'Pending'}</h3>
                                                 {payment.transactionReference && (
-                                                    <Typography>Reference: {payment.transactionReference}</Typography>
+                                                    <h3>Reference: {payment.transactionReference}</h3>
                                                 )}
                                                 {payment.notes && (
-                                                    <Typography>Notes: {payment.notes}</Typography>
+                                                    <h3>Notes: {payment.notes}</h3>
                                                 )}
                                             </CardContent>
                                         </Card>

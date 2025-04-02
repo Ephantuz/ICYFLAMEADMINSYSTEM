@@ -50,9 +50,9 @@ function App() {
       path: "/",
       element: (
         <ProtectRoute>
-          {/* <OnboardingProtectRoute> */}
+          <OnboardingProtectRoute>
             <Layout />
-          {/* </OnboardingProtectRoute> */}
+          </OnboardingProtectRoute>
         </ProtectRoute>
       ),
       children: [

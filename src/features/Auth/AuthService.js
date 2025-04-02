@@ -2,19 +2,20 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const BASE_URL = 'https://icyflame-ltd-core.onrender.com/api/v1/auth/vendors/';
+const BASE_URL = 'https://icyflame-ltd-core.onrender.com/api/v1/auth/vendors';
+const BASE_URL_LOCAL = 'http://localhost:8100/api/v1/auth/vendors';
 const RESET_BASE_URL = 'https://icyflame-ltd-core.onrender.com/api/auth/adminstration/sales/config/';
 
 // Simplifying API endpoints
 const endpoints = {
-    register: `${BASE_URL}register`,
-    login: `${BASE_URL}login`,
-    verify: `${BASE_URL}verify/`,
-    loginStatus: `${BASE_URL}loginstatus/`,
-    logoutUser: `${BASE_URL}logout/`,
-    resetByEmail: `${RESET_BASE_URL}resetbymail`,
-    resetPassword: `${RESET_BASE_URL}resetpassword`,
-    updateUser: `${BASE_URL}config/`,
+    register: `${BASE_URL}/register`,
+    login: `${BASE_URL}/login`,
+    verify: `${BASE_URL}/verify/`,
+    loginStatus: `${BASE_URL}/loginstatus/`,
+    logoutUser: `${BASE_URL}/logout/`,
+    resetByEmail: `${RESET_BASE_URL}/resetbymail`,
+    resetPassword: `${RESET_BASE_URL}/resetpassword`,
+    updateUser: `${BASE_URL}/config/`,
 };
 // Utilize try/catch for async operations
 const register = async (userData) => {
@@ -58,13 +59,16 @@ const update = async (userData, id) => {
 
 const isLoggedIn = async () => {
     try {
-        const response = await axios.get(endpoints.loginStatus);
+        const response = await axios.get(endpoints.loginStatus, {
+            withCredentials: true, // Ensures cookies are sent
+        });
         return response.data;
     } catch (error) {
-        console.error('Login status error:', error.response.data);
+        console.error('Login status error:', error.response?.data || error.message);
         throw error;
     }
 };
+
 const LogOut = async () => {
     try {
         const response = await axios.post(endpoints.logoutUser);
