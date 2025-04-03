@@ -28,6 +28,10 @@ const Menu = () => {
                         <AiFillHome />
                         <span className="listItemTitle">Home</span>
                     </Link>
+                    <Link to='/stats' className='listItem'>
+                        <AiFillHome />
+                        <span className="listItemTitle">Stats</span>
+                    </Link>
                     <Link to='/products' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Products</span>

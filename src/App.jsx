@@ -26,6 +26,7 @@ import Register from './Components/Register/Register.jsx';
 import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
+import Stats from './Components/Stats/Stats.jsx';
 function App() {
 
   const Layout = () => {
@@ -59,6 +60,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/stats",
+          element: <Stats />,
         },
         {
           path: "/clients",

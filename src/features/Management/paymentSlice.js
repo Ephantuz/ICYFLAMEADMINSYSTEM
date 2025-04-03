@@ -20,7 +20,7 @@ export const getVendorPaymentSummary = createAsyncThunk(
     'payments/getVendorPaymentSummary',
     async (shopId, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/vendor/${shopId}`, {
+            const { data } = await axios.get(`https://icyflame-ltd-core.onrender.com/api/v1/finance/payments/vendor/${shopId}`, {
                 withCredentials: true,
             });
             return data;
