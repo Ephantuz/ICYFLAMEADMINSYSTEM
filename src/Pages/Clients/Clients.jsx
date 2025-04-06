@@ -1,102 +1,80 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './Clients.css';
-// Sample data (simulate backend fetch)
-const sampleData = [
-    {
-        _id: '67da902e8ce8b5787c02bc4d',
-        googleId: '100160018650334571608',
-        name: 'Dark Cypher',
-        email: 'therootcypher@gmail.com',
-        picture: 'https://lh3.googleusercontent.com/a/ACg8ocJBuhYCa7nCueavyZAJsLE5AKaaA1noNLdwaVVLPJdfa1vGGTo=s96-c',
-        createdAt: 1742377006453,
-        updatedAt: 1742379825164,
-        addresses: [
-            {
-                name: 'Ephantus Mwangi',
-                mobileNo: '0111889761',
-                houseNo: '5555',
-                street: 'Ruaka',
-                landmark: 'Near Quickmart',
-                city: 'Nairobi',
-                country: 'Kenya',
-                postalCode: '25615511',
-                _id: '67da9b31c200bcb444f7f2ca',
-            },
-        ],
-    },
-    {
-        _id: '67da902e8ce8b5787c02bc42',
-        googleId: '100160018650334571608',
-        name: 'Dark Martin',
-        email: 'therootcypher@gmail.com',
-        picture: 'https://lh3.googleusercontent.com/a/ACg8ocJBuhYCa7nCueavyZAJsLE5AKaaA1noNLdwaVVLPJdfa1vGGTo=s96-c',
-        createdAt: 1742377006453,
-        updatedAt: 1742379825164,
-        addresses: [
-            {
-                name: 'Ephantus Mwangi',
-                mobileNo: '0111889761',
-                houseNo: '5555',
-                street: 'Ruaka',
-                landmark: 'Near Quickmart',
-                city: 'Nairobi',
-                country: 'Kenya',
-                postalCode: '25615511',
-                _id: '67da9b31c200bcb444f7f2ca',
-            },
-        ],
-    },
-    {
-        _id: '67da902e8ce8b5787c02bc43',
-        googleId: '100160018650334571608',
-        name: 'Ephy Mwangi',
-        email: 'therootcypher@gmail.com',
-        picture: 'https://lh3.googleusercontent.com/a/ACg8ocJBuhYCa7nCueavyZAJsLE5AKaaA1noNLdwaVVLPJdfa1vGGTo=s96-c',
-        createdAt: 1742377006453,
-        updatedAt: 1742379825164,
-        addresses: [
-            {
-                name: 'Ephantus Mwangi',
-                mobileNo: '0111889761',
-                houseNo: '5555',
-                street: 'Ruaka',
-                landmark: 'Near Quickmart',
-                city: 'Nairobi',
-                country: 'Kenya',
-                postalCode: '25615511',
-                _id: '67da9b31c200bcb444f7f2ca',
-            },
-        ],
-    },
-    // Add more clients if needed
-];
+import { 
+  fetchAllVendors, 
+  fetchVendorsByStatus, 
+  changeVendorStatus, 
+  reset 
+} from '../../features/VendorsManagement/VendorsManagementSlice';
 
-const ClientTable = () => {
-    const [clients, setClients] = useState([]);
-    const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'ascending' });
+const VendorTable = () => {
+    const dispatch = useDispatch();
+    const {
+        vendors = [],
+        filteredVendors = [],
+        isLoading,
+        isError,
+        isSuccess,
+        message
+    } = useSelector((state) => state.vendors);
+
+    const [activeTab, setActiveTab] = useState('all');
+    const [sortConfig, setSortConfig] = useState({ 
+        key: 'shopName', 
+        direction: 'ascending' 
+    });
+    const [showAlert, setShowAlert] = useState(false);
+    const [selectedVendor, setSelectedVendor] = useState(null);
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [pendingStatus, setPendingStatus] = useState('');
 
     useEffect(() => {
-        // Simulate fetching data from a backend
-        setClients(sampleData);
-    }, []);
+        dispatch(fetchAllVendors());
+        return () => {
+            dispatch(reset());
+        };
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (isSuccess || isError) {
+            setShowAlert(true);
+            const timer = setTimeout(() => {
+                setShowAlert(false);
+                dispatch(reset());
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSuccess, isError, dispatch]);
+
+    const handleStatusChange = (status) => {
+        setActiveTab(status);
+        if (status === 'all') {
+            dispatch(fetchAllVendors());
+        } else {
+            dispatch(fetchVendorsByStatus(status));
+        }
+    };
+
+    const handleStatusUpdateClick = (vendorId, newStatus) => {
+        setSelectedVendor(vendorId);
+        setPendingStatus(newStatus);
+        setShowConfirmation(true);
+    };
+
+    const confirmStatusUpdate = () => {
+        dispatch(changeVendorStatus({ 
+            vendorId: selectedVendor, 
+            status: pendingStatus 
+        }));
+        setShowConfirmation(false);
+    };
 
     const sortData = (key) => {
         let direction = 'ascending';
         if (sortConfig.key === key && sortConfig.direction === 'ascending') {
             direction = 'descending';
         }
-
-        const sortedClients = [...clients].sort((a, b) => {
-            if (key === 'createdAt') {
-                return direction === 'ascending' ? a[key] - b[key] : b[key] - a[key];
-            }
-
-            if (a[key]?.toLowerCase() < b[key]?.toLowerCase()) return direction === 'ascending' ? -1 : 1;
-            if (a[key]?.toLowerCase() > b[key]?.toLowerCase()) return direction === 'ascending' ? 1 : -1;
-            return 0;
-        });
-
-        setClients(sortedClients);
         setSortConfig({ key, direction });
     };
 
@@ -105,33 +83,167 @@ const ClientTable = () => {
         return sortConfig.direction === 'ascending' ? '↑' : '↓';
     };
 
+    const getStatusBadge = (status) => {
+        const statusClasses = {
+            'Approved': 'badge-success',
+            'Pending': 'badge-warning',
+            'Declined': 'badge-danger',
+            'Verified': 'badge-info'
+        };
+        return (
+            <span className={`badge ${statusClasses[status] || 'badge-secondary'}`}>
+                {status}
+            </span>
+        );
+    };
+
+    const getSortedVendors = () => {
+        const vendorsToSort = [...(activeTab === 'all' ? vendors : filteredVendors)];
+        return vendorsToSort.sort((a, b) => {
+            const aValue = a[sortConfig.key]?.toString().toLowerCase();
+            const bValue = b[sortConfig.key]?.toString().toLowerCase();
+            
+            if (sortConfig.key === 'createdAt') {
+                return sortConfig.direction === 'ascending' 
+                    ? new Date(aValue) - new Date(bValue) 
+                    : new Date(bValue) - new Date(aValue);
+            }
+
+            if (aValue < bValue) return sortConfig.direction === 'ascending' ? -1 : 1;
+            if (aValue > bValue) return sortConfig.direction === 'ascending' ? 1 : -1;
+            return 0;
+        });
+    };
+
+    const sortedVendors = getSortedVendors();
+
     return (
         <div className="client-table-container">
-            <h2 className="title">Clients</h2>
+            <h2 className="title">Vendor Management</h2>
+
+            {/* Alert Notification */}
+            {showAlert && (
+                <div className={`alert ${isError ? 'alert-danger' : 'alert-success'}`}>
+                    {message}
+                </div>
+            )}
+
+            {/* Confirmation Modal */}
+            {showConfirmation && (
+                <div className="confirmation-modal">
+                    <div className="modal-content">
+                        <h3>Confirm Status Change</h3>
+                        <p>Are you sure you want to change this vendor's status to {pendingStatus}?</p>
+                        <div className="modal-actions">
+                            <button 
+                                className="modal-btn cancel"
+                                onClick={() => setShowConfirmation(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button 
+                                className={`modal-btn ${pendingStatus.toLowerCase()}`}
+                                onClick={confirmStatusUpdate}
+                                disabled={isLoading}
+                            >
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Status Filter Tabs */}
+            <div className="status-tabs">
+                <button
+                    className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
+                    onClick={() => handleStatusChange('all')}
+                >
+                    All Vendors
+                </button>
+                {['Pending', 'Approved', 'Declined', 'Verified'].map((status) => (
+                    <button
+                        key={status}
+                        className={`tab-btn ${activeTab === status ? 'active' : ''}`}
+                        onClick={() => handleStatusChange(status)}
+                    >
+                        {status}
+                    </button>
+                ))}
+            </div>
+
+            {/* Vendors Table */}
             <div className="table-wrapper">
                 <table className="client-table">
                     <thead>
                         <tr>
-                            <th>Picture</th>
-                            <th onClick={() => sortData('name')}>Name {getSortArrow('name')}</th>
-                            <th onClick={() => sortData('email')}>Email {getSortArrow('email')}</th>
-                            <th onClick={() => sortData('createdAt')}>Joined {getSortArrow('createdAt')}</th>
+                            <th onClick={() => sortData('shopName')}>
+                                Shop Name {getSortArrow('shopName')}
+                            </th>
+                            <th onClick={() => sortData('email')}>
+                                Email {getSortArrow('email')}
+                            </th>
+                            <th onClick={() => sortData('county')}>
+                                County {getSortArrow('county')}
+                            </th>
+                            <th onClick={() => sortData('createdAt')}>
+                                Joined {getSortArrow('createdAt')}
+                            </th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {clients.length === 0 ? (
+                        {isLoading ? (
                             <tr>
-                                <td colSpan="4">Loading...</td>
+                                <td colSpan="6" className="loading-text">
+                                    <div className="loading-spinner"></div>
+                                    Loading vendors...
+                                </td>
+                            </tr>
+                        ) : sortedVendors.length === 0 ? (
+                            <tr>
+                                <td colSpan="6" className="no-data">
+                                    No vendors found
+                                </td>
                             </tr>
                         ) : (
-                            clients.map((client) => (
-                                <tr key={client._id}>
-                                    <td>
-                                        <img src={client.picture} alt={client.name} className="avatar" />
+                            sortedVendors.map((vendor) => (
+                                <tr key={vendor._id}>
+                                    <td>{vendor.shopName}</td>
+                                    <td>{vendor.email}</td>
+                                    <td>{vendor.county}</td>
+                                    <td>{new Date(vendor.createdAt).toLocaleDateString()}</td>
+                                    <td>{getStatusBadge(vendor.isApproved)}</td>
+                                    <td className="actions">
+                                        {vendor.isApproved !== 'Approved' && (
+                                            <button
+                                                className="action-btn approve"
+                                                onClick={() => handleStatusUpdateClick(vendor._id, 'Approved')}
+                                                disabled={isLoading}
+                                            >
+                                                Approve
+                                            </button>
+                                        )}
+                                        {vendor.isApproved !== 'Declined' && (
+                                            <button
+                                                className="action-btn decline"
+                                                onClick={() => handleStatusUpdateClick(vendor._id, 'Declined')}
+                                                disabled={isLoading}
+                                            >
+                                                Decline
+                                            </button>
+                                        )}
+                                        {vendor.isApproved !== 'Verified' && (
+                                            <button
+                                                className="action-btn verify"
+                                                onClick={() => handleStatusUpdateClick(vendor._id, 'Verified')}
+                                                disabled={isLoading}
+                                            >
+                                                Verify
+                                            </button>
+                                        )}
                                     </td>
-                                    <td>{client.name}</td>
-                                    <td>{client.email}</td>
-                                    <td>{new Date(client.createdAt).toLocaleDateString()}</td>
                                 </tr>
                             ))
                         )}
@@ -142,4 +254,4 @@ const ClientTable = () => {
     );
 };
 
-export default ClientTable;
+export default VendorTable;

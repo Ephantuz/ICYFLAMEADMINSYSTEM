@@ -4,7 +4,7 @@ import Home from './Pages/Home/Home.jsx';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Users from './Pages/Users/Users.jsx';
 import Products from './Pages/Products/Products.jsx';
-import Clients from './Pages/Clients/Clients.jsx';
+import Vendors from './Pages/Clients/Clients.jsx';
 import Orders from './Pages/Orders/Orders.jsx';
 import Coupons from './Pages/Coupons/Coupons.jsx';
 import Employees from './Pages/Employees/Employees.jsx';
@@ -27,6 +27,7 @@ import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
 import Stats from './Components/Stats/Stats.jsx';
+
 function App() {
 
   const Layout = () => {
@@ -66,8 +67,8 @@ function App() {
           element: <Stats />,
         },
         {
-          path: "/clients",
-          element: <Clients />,
+          path: "/vendors",
+          element: <Vendors />,
         },
         {
           path: "/coupons",
@@ -125,11 +126,11 @@ function App() {
           path: "/*",
           element: <div className="err">Error</div>,
         },
+        {
+          path: "/onboarding",
+          element: <TermsAndConditions />,
+        },
       ],
-    },
-    {
-      path: "/onboarding",
-      element: <TermsAndConditions />,
     },
     {
       path: "/login",

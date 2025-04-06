@@ -76,13 +76,13 @@ const Menu = () => {
                         <BsDatabaseFillUp />
                         <span className="listItemTitle">Departments</span>
                     </Link> */}
-                    <Link to='/clients' className='listItem'>
+                    <Link to='/vendors' className='listItem'>
                         <FaUserAlt />
-                        <span className="listItemTitle">Customers</span>
+                        <span className="listItemTitle">Vendors</span>
                     </Link>
                     <Link to='/vendors' className='listItem'>
                         <BsDatabaseFillUp />
-                        <span className="listItemTitle">Vendors</span>
+                        <span className="listItemTitle">Customers</span>
                     </Link>
 
                 </div>

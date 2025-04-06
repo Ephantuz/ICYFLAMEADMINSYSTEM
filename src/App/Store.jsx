@@ -13,7 +13,7 @@ import productFetchReducer from '../features/Products/allProducts';
 import ordersReducer from '../features/Orders/Orders';
 import adminPaymentReducer from '../features/Payment/Payment';
 import paymentReducer from './../features/Management/paymentSlice'
-
+import VendorsManagementReducer from '../features/VendorsManagement/VendorsManagementSlice';
 
 
 export const store = configureStore({
@@ -30,5 +30,6 @@ export const store = configureStore({
         // application: allproductFetchReducer,
         adminPayments: adminPaymentReducer,
         payments: paymentReducer,
+        vendors: VendorsManagementReducer
     },
 });

@@ -1,70 +1,174 @@
 .client-table-container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  color: rgb(216, 216, 198);
-  background: rgb(7, 7, 21);
-  width: 100%;
-  max-width: 800px;
+  background-color: #030b16; /* Dark bluish-black */
+  color: #e6f1ff; /* Light blue-white text */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  font-size: 24px;
+  color: #fcfcfc; /* Teal accent color */
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.status-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  background-color: #112240; /* Dark blue */
+  color: #e6f1ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #233554; /* Lighter blue */
+}
+
+.tab-btn.active {
+  background-color: #64ffda; /* Teal */
+  color: #0a192f; /* Dark text */
 }
 
 .table-wrapper {
   overflow-x: auto;
-  border: 1px solid rgba(184, 184, 184, 0.2);
-  border-radius: 8px;
 }
 
 .client-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
-}
-
-.client-table th,
-.client-table td {
-  padding: 12px 15px;
-  text-align: left;
+  margin-top: 20px;
 }
 
 .client-table th {
-  background-color: rgba(216, 216, 198, 0.1);
+  background-color: #112240; /* Dark blue */
+  color: #64ffda; /* Teal */
+  padding: 12px;
+  text-align: left;
   cursor: pointer;
   user-select: none;
 }
 
-.client-table tr {
-  border-bottom: 1px solid rgba(184, 184, 184, 0.1);
+.client-table th:hover {
+  background-color: #233554; /* Lighter blue */
+}
+
+.client-table td {
+  padding: 12px;
+  border-bottom: 1px solid #233554; /* Lighter blue */
 }
 
 .client-table tr:hover {
-  background-color: rgba(216, 216, 198, 0.05);
+  background-color: #112240; /* Dark blue */
 }
 
-.client-table td img.avatar {
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge-success {
+  background-color: #2e7d32; /* Green */
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ff8f00; /* Amber */
+  color: black;
+}
+
+.badge-danger {
+  background-color: #c62828; /* Red */
+  color: white;
+}
+
+.badge-info {
+  background-color: #0277bd; /* Blue */
+  color: white;
+}
+
+.badge-secondary {
+  background-color: #37474f; /* Grey */
+  color: white;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.action-btn.approve {
+  background-color: #2e7d32; /* Green */
+  color: white;
+}
+
+.action-btn.decline {
+  background-color: #c62828; /* Red */
+  color: white;
+}
+
+.action-btn.verify {
+  background-color: #0277bd; /* Blue */
+  color: white;
+}
+
+.action-btn:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.alert-success {
+  background-color: #1b5e20; /* Dark green */
+  color: white;
+}
+
+.alert-danger {
+  background-color: #b71c1c; /* Dark red */
+  color: white;
+}
+
+.loading-text,
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #64ffda; /* Teal */
+}
+
+.avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-}
-
-.client-table th:hover {
-  background-color: rgba(216, 216, 198, 0.2);
-}
-
-/* Responsive tweaks */
-@media screen and (max-width: 768px) {
-  .client-table-container {
-    padding: 10px;
-  }
-
-  .client-table th,
-  .client-table td {
-    padding: 8px 10px;
-  }
-
-  .title {
-    font-size: 18px;
-  }
+  object-fit: cover;
 }

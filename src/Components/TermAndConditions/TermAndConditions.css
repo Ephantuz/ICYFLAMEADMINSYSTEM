@@ -12,13 +12,6 @@
   position: relative;
 }
 
-/* Full-height PDF */
-iframe {
-  width: 100%;
-  height: 100vh;
-  border: none;
-}
-
 /* Fixed bottom bar */
 .onboarding-footer {
   position: fixed;
