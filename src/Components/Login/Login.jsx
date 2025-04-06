@@ -67,6 +67,9 @@ function Login() {
             {/* Sign Up Button */}
             {!showSignUp && (
                 <div className="LoginHighlight">
+                    <div className="LoginImage">
+                        <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7863.jpg?t=st=1742911262~exp=1742914862~hmac=4b5bc841ed1a2551e07d72cb6e62c6287e5799fbae8a9b99db295bc118104e50&w=740" alt="" />
+                    </div>
                     <div className="SwipeButton" onClick={handleSignUpClick}>
                         Let's Login
                     </div>

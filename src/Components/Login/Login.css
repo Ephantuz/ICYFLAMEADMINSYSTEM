@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f3f3f3; /* Light Amazon-style background */
+  background-color: #000000; /* Light Amazon-style background */
   transition: all 0.4s ease;
   font-family: Arial, sans-serif;
   color: #333;
@@ -179,15 +179,6 @@ p {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  align-items: center !important;
-  justify-content: center !important;
-  background-image: url("https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7863.jpg?t=st=1742911262~exp=1742914862~hmac=4b5bc841ed1a2551e07d72cb6e62c6287e5799fbae8a9b99db295bc118104e50&w=740"); /* Add your image URL here */
-  background-size: contain; /* Ensures the image covers the entire element */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Ensures the image doesn't repeat */
-  /* z-index: -1; Places the image behind other content */
 }
 
 /* Make sure it works on smaller devices */

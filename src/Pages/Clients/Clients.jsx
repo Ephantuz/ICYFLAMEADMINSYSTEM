@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Clients.css';
-import { 
-  fetchAllVendors, 
-  fetchVendorsByStatus, 
-  changeVendorStatus, 
-  reset 
+import {
+    fetchAllVendors,
+    fetchVendorsByStatus,
+    changeVendorStatus,
+    reset
 } from '../../features/VendorsManagement/VendorsManagementSlice';
 
 const VendorTable = () => {
@@ -20,9 +20,9 @@ const VendorTable = () => {
     } = useSelector((state) => state.vendors);
 
     const [activeTab, setActiveTab] = useState('all');
-    const [sortConfig, setSortConfig] = useState({ 
-        key: 'shopName', 
-        direction: 'ascending' 
+    const [sortConfig, setSortConfig] = useState({
+        key: 'shopName',
+        direction: 'ascending'
     });
     const [showAlert, setShowAlert] = useState(false);
     const [selectedVendor, setSelectedVendor] = useState(null);
@@ -63,9 +63,9 @@ const VendorTable = () => {
     };
 
     const confirmStatusUpdate = () => {
-        dispatch(changeVendorStatus({ 
-            vendorId: selectedVendor, 
-            status: pendingStatus 
+        dispatch(changeVendorStatus({
+            vendorId: selectedVendor,
+            status: pendingStatus
         }));
         setShowConfirmation(false);
     };
@@ -87,8 +87,7 @@ const VendorTable = () => {
         const statusClasses = {
             'Approved': 'badge-success',
             'Pending': 'badge-warning',
-            'Declined': 'badge-danger',
-            'Verified': 'badge-info'
+            'Declined': 'badge-danger'
         };
         return (
             <span className={`badge ${statusClasses[status] || 'badge-secondary'}`}>
@@ -102,10 +101,10 @@ const VendorTable = () => {
         return vendorsToSort.sort((a, b) => {
             const aValue = a[sortConfig.key]?.toString().toLowerCase();
             const bValue = b[sortConfig.key]?.toString().toLowerCase();
-            
+
             if (sortConfig.key === 'createdAt') {
-                return sortConfig.direction === 'ascending' 
-                    ? new Date(aValue) - new Date(bValue) 
+                return sortConfig.direction === 'ascending'
+                    ? new Date(aValue) - new Date(bValue)
                     : new Date(bValue) - new Date(aValue);
             }
 
@@ -135,13 +134,13 @@ const VendorTable = () => {
                         <h3>Confirm Status Change</h3>
                         <p>Are you sure you want to change this vendor's status to {pendingStatus}?</p>
                         <div className="modal-actions">
-                            <button 
+                            <button
                                 className="modal-btn cancel"
                                 onClick={() => setShowConfirmation(false)}
                             >
                                 Cancel
                             </button>
-                            <button 
+                            <button
                                 className={`modal-btn ${pendingStatus.toLowerCase()}`}
                                 onClick={confirmStatusUpdate}
                                 disabled={isLoading}
@@ -161,7 +160,7 @@ const VendorTable = () => {
                 >
                     All Vendors
                 </button>
-                {['Pending', 'Approved', 'Declined', 'Verified'].map((status) => (
+                {['Pending', 'Approved', 'Declined'].map((status) => (
                     <button
                         key={status}
                         className={`tab-btn ${activeTab === status ? 'active' : ''}`}
@@ -232,15 +231,6 @@ const VendorTable = () => {
                                                 disabled={isLoading}
                                             >
                                                 Decline
-                                            </button>
-                                        )}
-                                        {vendor.isApproved !== 'Verified' && (
-                                            <button
-                                                className="action-btn verify"
-                                                onClick={() => handleStatusUpdateClick(vendor._id, 'Verified')}
-                                                disabled={isLoading}
-                                            >
-                                                Verify
                                             </button>
                                         )}
                                     </td>

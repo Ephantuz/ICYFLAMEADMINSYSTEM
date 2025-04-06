@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const BASE_URL = 'http://localhost:8100/api/v1/auth/vendors/admin';
+const BASE_URL = 'https://icyflame-ltd-core.onrender.com/api/v1/auth/vendors/admin';
 // const BASE_URL_LOCAL = 'http://localhost:8100/api/v1/admin';
 
 const endpoints = {
