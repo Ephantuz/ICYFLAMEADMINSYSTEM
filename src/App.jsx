@@ -27,25 +27,57 @@ import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
 import Stats from './Components/Stats/Stats.jsx';
+import { useSelector } from 'react-redux';
 
-function App() {
+// hooks/useApprovalStatus.js
+export const useApprovalStatus = () => {
+  const { loggedIn, userApproval } = useSelector((state) => state.auth);
 
-  const Layout = () => {
-    return (
-      <div className="main">
-        <Navbar />
-        <div className="main-container">
-          <div className="menuContainer">
-            <Menu />
-          </div>
-          <div className="contentContainer">
-            <Outlet />
-          </div>
+  return {
+    isApproved: loggedIn && userApproval === "Approved",
+    status: loggedIn ? userApproval : null,
+    isDeclined: loggedIn && userApproval === "Declined",
+    isPending: loggedIn && userApproval !== "Approved" && userApproval !== "Declined"
+  };
+};
+
+// components/ApprovalLayout.jsx
+const ApprovalLayout = () => {
+  const { isApproved, status, isDeclined } = useApprovalStatus();
+
+  return (
+    <div className="main">
+      <Navbar />
+      <div className="main-container">
+        <div className="menuContainer">
+          <Menu />
         </div>
-        <Footer />
+        <div className="contentContainer">
+          {isApproved ? (
+            <Outlet />
+          ) : (
+            <div className="approval-message">
+              {isDeclined ? (
+                <>
+                  <h2>Account Declined</h2>
+                  <p>Your application has been declined. Please contact support.</p>
+                </>
+              ) : (
+                <>
+                  <h2>Approval Pending</h2>
+                  <p>Your account is under review. Please check back later.</p>
+                  {status && <p className="status">Current status: {status}</p>}
+                </>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    )
-  }
+      <Footer />
+    </div>
+  );
+};
+function App() {
 
   const router = createBrowserRouter([
     {
@@ -53,7 +85,7 @@ function App() {
       element: (
         <ProtectRoute>
           <OnboardingProtectRoute>
-            <Layout />
+            <ApprovalLayout />
           </OnboardingProtectRoute>
         </ProtectRoute>
       ),
@@ -64,7 +96,9 @@ function App() {
         },
         {
           path: "/stats",
-          element: <Stats />,
+          element: <div className="">
+            <Stats />
+          </div>,
         },
         {
           path: "/vendors",

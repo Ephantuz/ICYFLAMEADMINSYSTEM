@@ -27,7 +27,7 @@ const Products = () => {
     const [loading, setLoading] = useState(false);
     const [formOpen, setFormOpen] = useState(false);
     const [images, setImages] = useState([]);
-    const { isLoading, isError, isSuccess, updatemessage, loggedIn } = useSelector((state) => state.auth)
+    const {loggedIn } = useSelector((state) => state.auth)
 
     const shopId = loggedIn?.user?.id
     // console.log(shopId);

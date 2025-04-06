@@ -1,4 +1,3 @@
-
 .clearfix:after {
   content: "";
   display: block;
@@ -272,10 +271,26 @@
   z-index: 1;
   text-align: center;
   padding: 15px;
-  color: #101d2c;
+  color: #101d2c !important;
+}
+.credit2 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 15px;
+  color: #fdfdfd !important;
+}
+.credit2 a {
+  color: #ffffff;
+  border: 1px solid rgb(243, 243, 243);
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 .credit a {
-  color: #585d63;
+  color: #07ca21;
+  border: 1px solid green;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
 /* Add to your existing Register.css */

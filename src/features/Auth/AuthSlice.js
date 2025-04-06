@@ -10,6 +10,7 @@ const initialState = {
     message: '',
     messageverify: '',
     updatemessage: '',
+    userApproval: "",
 };
 
 // Register user async thunk
@@ -164,6 +165,7 @@ export const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.loggedIn = action.payload;
+                state.userApproval = action.payload.isApproved;
             })
             .addCase(checkLoginStatus.rejected, (state, action) => {
                 state.isLoading = false;

@@ -11,7 +11,7 @@
 }
 
 /* Title */
-.title {
+.client-table-container .title {
   color: #64ffda;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -20,14 +20,14 @@
 }
 
 /* Status Tabs */
-.status-tabs {
+.client-table-container .status-tabs {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.tab-btn {
+.client-table-container .tab-btn {
   padding: 0.5rem 1rem;
   background-color: #112240;
   color: #ccd6f6;
@@ -38,32 +38,32 @@
   font-size: 0.9rem;
 }
 
-.tab-btn:hover {
+.client-table-container .tab-btn:hover {
   background-color: #233554;
   transform: translateY(-2px);
 }
 
-.tab-btn.active {
+.client-table-container .tab-btn.active {
   background-color: #64ffda;
   color: #0a192f;
   font-weight: 600;
 }
 
 /* Table Styles */
-.table-wrapper {
+.client-table-container .table-wrapper {
   overflow-x: auto;
   border-radius: 6px;
   background-color: #060c16;
   padding: 1px;
 }
 
-.client-table {
+.client-table-container .client-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
 
-.client-table th {
+.client-table-container .client-table th {
   background-color: #1f2d4a;
   color: #64ffda;
   padding: 1rem;
@@ -74,26 +74,26 @@
   position: relative;
 }
 
-.client-table th:hover {
+.client-table-container .client-table th:hover {
   background-color: #233554;
 }
 
-.client-table td {
+.client-table-container .client-table td {
   padding: 1rem;
   border-bottom: 1px solid #233554;
   vertical-align: middle;
 }
 
-.client-table tr:last-child td {
+.client-table-container .client-table tr:last-child td {
   border-bottom: none;
 }
 
-.client-table tr:hover {
+.client-table-container .client-table tr:hover {
   background-color: #112240;
 }
 
 /* Badges */
-.badge {
+.client-table-container .badge {
   padding: 0.35rem 0.75rem;
   border-radius: 50px;
   font-size: 0.8rem;
@@ -101,39 +101,39 @@
   display: inline-block;
 }
 
-.badge-success {
+.client-table-container .badge-success {
   background-color: rgba(46, 125, 50, 0.2);
   color: #66bb6a;
 }
 
-.badge-warning {
+.client-table-container .badge-warning {
   background-color: rgba(255, 143, 0, 0.2);
   color: #ffa726;
 }
 
-.badge-danger {
+.client-table-container .badge-danger {
   background-color: rgba(198, 40, 40, 0.2);
   color: #ef5350;
 }
 
-.badge-info {
+.client-table-container .badge-info {
   background-color: rgba(2, 119, 189, 0.2);
   color: #42a5f5;
 }
 
-.badge-secondary {
+.client-table-container .badge-secondary {
   background-color: rgba(55, 71, 79, 0.2);
   color: #b0bec5;
 }
 
 /* Action Buttons */
-.actions {
+.client-table-container .actions {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.action-btn {
+.client-table-container .action-btn {
   padding: 0.5rem 0.8rem;
   border: none;
   border-radius: 4px;
@@ -144,56 +144,56 @@
   min-width: 70px;
 }
 
-.action-btn.approve {
+.client-table-container .action-btn.approve {
   background-color: rgba(46, 125, 50, 0.1);
   color: #66bb6a;
   border: 1px solid rgba(46, 125, 50, 0.3);
 }
 
-.action-btn.decline {
+.client-table-container .action-btn.decline {
   background-color: rgba(198, 40, 40, 0.1);
   color: #ef5350;
   border: 1px solid rgba(198, 40, 40, 0.3);
 }
 
-.action-btn.verify {
+.client-table-container .action-btn.verify {
   background-color: rgba(2, 119, 189, 0.1);
   color: #42a5f5;
   border: 1px solid rgba(2, 119, 189, 0.3);
 }
 
-.action-btn:hover:not(:disabled) {
+.client-table-container .action-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.action-btn:disabled {
+.client-table-container .action-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* Alerts */
-.alert {
+.client-table-container .alert {
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
-.alert-success {
+.client-table-container .alert-success {
   background-color: rgba(46, 125, 50, 0.2);
   color: #66bb6a;
   border-left: 4px solid #66bb6a;
 }
 
-.alert-danger {
+.client-table-container .alert-danger {
   background-color: rgba(198, 40, 40, 0.2);
   color: #ef5350;
   border-left: 4px solid #ef5350;
 }
 
 /* Loading States */
-.loading-text {
+.client-table-container .loading-text {
   text-align: center;
   padding: 2rem;
   color: #64ffda;
@@ -203,7 +203,7 @@
   gap: 0.5rem;
 }
 
-.loading-spinner {
+.client-table-container .loading-spinner {
   width: 20px;
   height: 20px;
   border: 3px solid rgba(100, 255, 218, 0.3);
@@ -218,14 +218,14 @@
   }
 }
 
-.no-data {
+.client-table-container .no-data {
   text-align: center;
   padding: 2rem;
   color: #0b0c11;
 }
 
 /* Confirmation Modal */
-.confirmation-modal {
+.client-table-container .confirmation-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -239,7 +239,7 @@
   color: black;
 }
 
-.modal-content {
+.client-table-container .modal-content {
   background-color: #e7eaf0;
   padding: 2rem;
   border-radius: 8px;
@@ -249,23 +249,23 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-.modal-content h3 {
+.client-table-container .modal-content h3 {
   color: #020a08;
   margin-bottom: 1rem;
 }
 
-.modal-content p {
+.client-table-container .modal-content p {
   margin-bottom: 1.5rem;
   color: #0a0e1b !important;
 }
 
-.modal-actions {
+.client-table-container .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
 
-.modal-btn {
+.client-table-container .modal-btn {
   padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 4px;
@@ -274,35 +274,35 @@
   transition: all 0.2s ease;
 }
 
-.modal-btn.cancel {
+.client-table-container .modal-btn.cancel {
   background-color: transparent;
   color: #0c101f;
   border: 1px solid #233554;
 }
 
-.modal-btn.cancel:hover {
+.client-table-container .modal-btn.cancel:hover {
   background-color: rgba(35, 53, 84, 0.5);
 }
 
-.modal-btn.approved {
+.client-table-container .modal-btn.approved {
   background-color: rgba(46, 125, 50, 0.2);
   color: #66bb6a;
   border: 1px solid rgba(46, 125, 50, 0.5);
 }
 
-.modal-btn.declined {
+.client-table-container .modal-btn.declined {
   background-color: rgba(198, 40, 40, 0.2);
   color: #ef5350;
   border: 1px solid rgba(198, 40, 40, 0.5);
 }
 
-.modal-btn.verified {
+.client-table-container .modal-btn.verified {
   background-color: rgba(2, 119, 189, 0.2);
   color: #42a5f5;
   border: 1px solid rgba(2, 119, 189, 0.5);
 }
 
-.modal-btn:hover:not(:disabled) {
+.client-table-container .modal-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

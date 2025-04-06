@@ -68,7 +68,7 @@ function Login() {
             {!showSignUp && (
                 <div className="LoginHighlight">
                     <div className="LoginImage">
-                        <img src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7863.jpg?t=st=1742911262~exp=1742914862~hmac=4b5bc841ed1a2551e07d72cb6e62c6287e5799fbae8a9b99db295bc118104e50&w=740" alt="" />
+                        <img className='loginImageCover' src="https://img.freepik.com/free-photo/3d-hand-hold-smartphone-with-authentication-form_107791-16570.jpg?t=st=1743953715~exp=1743957315~hmac=526da69c3c81aefb639568d0d4fa7a28afe4577a65fa0f62ae09a90b3521bdf2&w=740" alt="" />
                     </div>
                     <div className="SwipeButton" onClick={handleSignUpClick}>
                         Let's Login

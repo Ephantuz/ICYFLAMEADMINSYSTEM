@@ -48,6 +48,17 @@
   /* margin: auto; */
   margin-bottom: 10vh !important;
 }
+.approval-message{
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+  color: #64ffda;
+  font-size: 18px;
+  box-shadow: 0 0 10px rgba(221, 218, 218, 0.445);
+  width:50%;
+  padding: 1rem;
+  border-radius: 10px
+}
 body {
   background: rgb(7, 7, 21);
 }
