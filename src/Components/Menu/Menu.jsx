@@ -86,7 +86,7 @@ const Menu = () => {
                     </Link>
 
                 </div>
-                <div className="menu-item">
+                {/* <div className="menu-item">
                     <span className="title">Marketting</span>
                     <Link to='/brands' className='listItem'>
                         <BsBarChartLineFill />
@@ -97,7 +97,7 @@ const Menu = () => {
                         <span className="listItemTitle">Campaigns</span>
                     </Link>
 
-                </div>
+                </div> */}
                 <div className="menu-item">
                     <span className="title">Logs</span>
                     <Link to='/settings' className='listItem'>
