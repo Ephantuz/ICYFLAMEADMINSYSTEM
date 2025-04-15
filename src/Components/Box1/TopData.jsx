@@ -26,7 +26,7 @@ const TopData = () => {
                     <div className="leading-p" key={product._id}>
                         <div className="p-profile">
                             <div className="p-profile-img">
-                                <img src={product.images[0].url} alt={product.name} />
+                                <img src={product.images[0].url} alt={'img'} />
                             </div>
                             <div className="p-profile-desc">
                                 <div className="p-title">{product.name}</div>

@@ -14,20 +14,15 @@ import ordersReducer from '../features/Orders/Orders';
 import adminPaymentReducer from '../features/Payment/Payment';
 import paymentReducer from './../features/Management/paymentSlice'
 import VendorsManagementReducer from '../features/VendorsManagement/VendorsManagementSlice';
+import locationReducer from '../features/Locations/LocationSlice';
 
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
-        // authVendor: vendorAuthReducer,
-        // product: productUploadReducer,
         vendorProduct: productFetchReducer,
-        // Events: EventFetchReducer,
-        // event: createEventReducer,
-        // coupon: createCouponReducer,
         orders: ordersReducer,
-        // receipts: receiptsReducer,
-        // application: allproductFetchReducer,
+        locations: locationReducer,
         adminPayments: adminPaymentReducer,
         payments: paymentReducer,
         vendors: VendorsManagementReducer

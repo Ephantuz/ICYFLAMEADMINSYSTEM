@@ -55,10 +55,10 @@ const Menu = () => {
                         <FaUserAlt />
                         <span className="listItemTitle">Dispach</span>
                     </Link>
-                    <Link to='/coupons' className='listItem'>
+                    {/* <Link to='/coupons' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Coupons</span>
-                    </Link>
+                    </Link> */}
 
                     {/* <Link to='/Deliveries' className='listItem'>
                         <BsCartFill />
@@ -80,9 +80,9 @@ const Menu = () => {
                         <FaUserAlt />
                         <span className="listItemTitle">Vendors</span>
                     </Link>
-                    <Link to='/vendors' className='listItem'>
+                    <Link to='/locations' className='listItem'>
                         <BsDatabaseFillUp />
-                        <span className="listItemTitle">Customers</span>
+                        <span className="listItemTitle">Delivery Locations</span>
                     </Link>
 
                 </div>

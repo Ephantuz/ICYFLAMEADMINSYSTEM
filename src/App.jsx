@@ -26,6 +26,7 @@ import Register from './Components/Register/Register.jsx';
 import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
 import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
+import Locations from './Components/Locations/Locations.jsx';
 import Stats from './Components/Stats/Stats.jsx';
 import { useSelector } from 'react-redux';
 
@@ -137,8 +138,8 @@ function App() {
           element: <Products />,
         },
         {
-          path: "/bonuses",
-          element: <Products />,
+          path: "/locations",
+          element: <Locations />,
         },
         {
           path: "/settings",

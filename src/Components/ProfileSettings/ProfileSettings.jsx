@@ -150,9 +150,8 @@ const ProfileSettings = () => {
     }
     return (
         <div className="shopSettingsMain">
-            {/* <ContentTop /> */}
             <div className="shopSettings">
-                <div className="initialData">
+                {/* <div className="initialData">
                     <div className="shopLogo">
                         <img src={loggedIn.user?.profilePicture?.url} alt="" />
                     </div>
@@ -182,7 +181,7 @@ const ProfileSettings = () => {
                         <h4>address</h4>
                         <p>{loggedIn.user?.address}</p>
                     </div>
-                </div>
+                </div> */}
                 <div className='Register'>
                     <div className="form_wrapper">
                         <div className="form_container">

@@ -22,7 +22,6 @@ function Login() {
 
     // console.log(message);
 
-
     const { password, email } = formData;
     const from = location.state?.from?.pathname || '/';
 
