@@ -4,7 +4,7 @@ import Home from './Pages/Home/Home.jsx';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Users from './Pages/Users/Users.jsx';
 import Products from './Pages/Products/Products.jsx';
-import Clients from './Pages/Clients/Clients.jsx';
+import Vendors from './Pages/Clients/Clients.jsx';
 import Orders from './Pages/Orders/Orders.jsx';
 import Coupons from './Pages/Coupons/Coupons.jsx';
 import Employees from './Pages/Employees/Employees.jsx';
@@ -12,154 +12,179 @@ import Dispach from './Pages/Dispach/Dispach.jsx';
 import Navbar from './Components/Navbar/Navbar.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Menu from './Components/Menu/Menu.jsx'
-// import Login from './Pages/Login/Login.jsx';
+import AdminPayments from './Components/AdminPayments/AdminPayments.jsx'
+import TermsAndConditions from './Components/TermAndConditions/TermAndConditions.jsx'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// import VerifyWorker from './components/Auth/VerifyWorker.jsx';
 import ProtectedLoginRoute from './Private/ProtectedLoginRoute.jsx';
 import ProtectedRegiterRoute from './Private/ProtectedRegiterRoute.jsx';
 import ProtectRoute from './Private/ProtectRoute.jsx';
+import OnboardingProtectRoute from './Private/ProtectOnboardingRoute.jsx';
 
 import LoginComponent from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
-// import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
+import VerifyVendor from './Components/VerifyVendor/Verify.jsx';
 import ProfileSettings from './Components/ProfileSettings/ProfileSettings.jsx';
-function App() {
+import HandlePayments from './Components/HandlePayments/HandlePayments.jsx';
+import Locations from './Components/Locations/Locations.jsx';
+import Stats from './Components/Stats/Stats.jsx';
+import { useSelector } from 'react-redux';
 
-  const Layout = () => {
-    return (
-      <div className="main">
-        <Navbar />
-        <div className="main-container">
-          <div className="menuContainer">
-            <Menu />
-          </div>
-          <div className="contentContainer">
-            <Outlet />
-          </div>
+// hooks/useApprovalStatus.js
+export const useApprovalStatus = () => {
+  const { loggedIn, userApproval } = useSelector((state) => state.auth);
+
+  return {
+    isApproved: loggedIn && userApproval === "Approved",
+    status: loggedIn ? userApproval : null,
+    isDeclined: loggedIn && userApproval === "Declined",
+    isPending: loggedIn && userApproval !== "Approved" && userApproval !== "Declined"
+  };
+};
+
+// components/ApprovalLayout.jsx
+const ApprovalLayout = () => {
+  const { isApproved, status, isDeclined } = useApprovalStatus();
+
+  return (
+    <div className="main">
+      <Navbar />
+      <div className="main-container">
+        <div className="menuContainer">
+          <Menu />
         </div>
-        {/* <Footer /> */}
+        <div className="contentContainer">
+          {isApproved ? (
+            <Outlet />
+          ) : (
+            <div className="approval-message">
+              {isDeclined ? (
+                <>
+                  <h2>Account Declined</h2>
+                  <p>Your application has been declined. Please contact support.</p>
+                </>
+              ) : (
+                <>
+                  <h2>Approval Pending</h2>
+                  <p>Your account is under review. Please check back later.</p>
+                  {status && <p className="status">Current status: {status}</p>}
+                </>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    )
-  }
+      <Footer />
+    </div>
+  );
+};
+function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectRoute>
+          <OnboardingProtectRoute>
+            <ApprovalLayout />
+          </OnboardingProtectRoute>
+        </ProtectRoute>
+      ),
       children: [
         {
           path: "/",
-          element:
-            <ProtectRoute><Home /></ProtectRoute>
-          ,
+          element: <Home />,
         },
         {
-          path: "/clients",
-          element:
-            <ProtectRoute><Clients /></ProtectRoute>
-          ,
+          path: "/stats",
+          element: <div className="">
+            <Stats />
+          </div>,
+        },
+        {
+          path: "/vendors",
+          element: <Vendors />,
         },
         {
           path: "/coupons",
-          element:
-            <ProtectRoute><Coupons /></ProtectRoute>
-          ,
+          element: <Coupons />,
+        },
+        {
+          path: "/adminpayments",
+          element: <AdminPayments />,
+        },
+        {
+          path: "/processpayments",
+          element: <HandlePayments />,
         },
         {
           path: "/salesincome",
-          element:
-            <ProtectRoute><Orders /></ProtectRoute>
-          ,
+          element: <Orders />,
         },
         {
           path: "/products",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
-        // {
-        //   path: "/Orders",
-        //   element:
-        //     <ProtectRoute><Products /></ProtectRoute>
-        //   ,
-        // },
         {
           path: "/dispach",
-          element:
-            <ProtectRoute><Dispach /></ProtectRoute>
-          ,
+          element: <Dispach />,
         },
         {
           path: "/employees",
-          element:
-            <ProtectRoute><Employees /></ProtectRoute>
-          ,
+          element: <Employees />,
         },
         {
           path: "/departments",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
         {
-          path: "/bonuses",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          path: "/locations",
+          element: <Locations />,
         },
         {
           path: "/settings",
-          element:
-            <ProtectRoute><ProfileSettings /></ProtectRoute>
-          ,
+          element: <ProfileSettings />,
         },
         {
           path: "/logout",
-          element:
-            <ProtectRoute><Products /></ProtectRoute>
-          ,
+          element: <Products />,
         },
         {
           path: "/brands",
-          element:
-            <ProtectRoute><Users /></ProtectRoute>
-          ,
+          element: <Users />,
         },
         {
           path: "/partners",
-          element:
-            <ProtectRoute><Users /></ProtectRoute>
-          ,
+          element: <Users />,
         },
         {
           path: "/*",
-          element:
-            <div className="err">Error</div>
-          ,
-        }
-      ]
+          element: <div className="err">Error</div>,
+        },
+        {
+          path: "/onboarding",
+          element: <TermsAndConditions />,
+        },
+      ],
     },
     {
       path: "/login",
-      element:
-        <ProtectedLoginRoute><LoginComponent /></ProtectedLoginRoute>
-      ,
+      element: <ProtectedLoginRoute><LoginComponent /></ProtectedLoginRoute>,
     },
     {
       path: "/register",
-      element:
-        <ProtectedRegiterRoute><Register /></ProtectedRegiterRoute>
-      ,
+      element: <ProtectedRegiterRoute><Register /></ProtectedRegiterRoute>,
+    },
+    {
+      path: "/shop/activation/:token",
+      element: <VerifyVendor />,
     },
     {
       path: "/*",
-      element:
-        <div className="err">Error</div>
-      ,
+      element: <div className="err">Error</div>,
     },
-  ])
+  ]);
+
 
 
 

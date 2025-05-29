@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Coupons.css'; // Make sure this file exists
+import { useSelector } from 'react-redux';
 
 const Coupon = () => {
-    const shopId = '679673c9f3a134d3d07e3b45'; // Fixed shopId for now
+    const { loggedIn } = useSelector((state) => state.auth)
 
+    const shopId = loggedIn?.user?.id
     const [products, setProducts] = useState([]);
     const [coupons, setCoupons] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState('');

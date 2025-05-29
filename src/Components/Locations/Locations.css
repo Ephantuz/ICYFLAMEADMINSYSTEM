@@ -1,0 +1,238 @@
+:root {
+  --bg-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --primary-color: #4caf50;
+  --primary-hover: #3e8e41;
+  --secondary-color: #2196f3;
+  --secondary-hover: #0b7dda;
+  --danger-color: #e66258;
+  --danger-hover: #d32f2f;
+  --border-color: #444;
+  --input-bg: #333;
+  --form-bg: #252525;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+.locations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.locations-container h1 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.location-form {
+  background: var(--form-bg);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.location-form h2 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.form-actions button:first-child {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.form-actions button:first-child:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.form-actions button:last-child {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.form-actions button:last-child:hover {
+  background-color: var(--danger-hover);
+  transform: translateY(-1px);
+}
+
+.form-actions button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.locations-list h2 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.location-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.location-card h3 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.location-card p {
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.location-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.location-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.location-actions button:first-child {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.location-actions button:first-child:hover {
+  background-color: var(--secondary-hover);
+  transform: translateY(-1px);
+}
+
+.location-actions button:last-child {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.location-actions button:last-child:hover {
+  background-color: var(--danger-hover);
+  transform: translateY(-1px);
+}
+
+.location-price {
+  color: var(--text-color) !important;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+/* Dark mode toggle (optional) */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .location-actions {
+    flex-direction: column;
+  }
+
+  .location-actions button {
+    width: 100%;
+  }
+
+  .locations-container {
+    padding: 15px;
+  }
+}

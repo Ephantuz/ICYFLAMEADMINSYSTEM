@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Products.css';
 import { TfiClose } from "react-icons/tfi";
+import { useSelector } from 'react-redux';
 
-const shopId = '679673c9f3a134d3d07e3b45';
 
 const initialFormState = () => ({
     name: '',
     highlights: '',
     minidescription: '',
     detaileddescription: '',
-    precription: '',
+    prescription: '',
     insidepackage: '',
     categories: [],
     tags: '',
@@ -27,7 +27,10 @@ const Products = () => {
     const [loading, setLoading] = useState(false);
     const [formOpen, setFormOpen] = useState(false);
     const [images, setImages] = useState([]);
+    const {loggedIn } = useSelector((state) => state.auth)
 
+    const shopId = loggedIn?.user?.id
+    // console.log(shopId);
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -113,7 +116,7 @@ const Products = () => {
         formData.append('highlights', form.highlights);
         formData.append('minidescription', form.minidescription);
         formData.append('detaileddescription', form.detaileddescription);
-        formData.append('precription', form.precription);
+        formData.append('prescription', form.prescription);
         formData.append('insidepackage', form.insidepackage);
         formData.append('unit', form.unit);
         formData.append('shopId', shopId);
@@ -178,7 +181,7 @@ const Products = () => {
             highlights: product.highlights || '',
             minidescription: product.minidescription || '',
             detaileddescription: product.detaileddescription || '',
-            precription: product.precription || '',
+            prescription: product.prescription || '',
             insidepackage: product.insidepackage || '',
             categories: product.categories || [],
             tags: (product.tags || []).join(', '),
@@ -249,9 +252,9 @@ const Products = () => {
                         />
 
                         <textarea
-                            name="precription"
+                            name="prescription"
                             placeholder="Prescription"
-                            value={form.precription}
+                            value={form.prescription}
                             onChange={handleInputChange}
                         />
 
@@ -339,7 +342,7 @@ const Products = () => {
                             {images.map((image, index) => (
                                 <div key={index} className="image-item">
                                     <img src={image} alt={`Preview ${index}`} />
-                                    <TfiClose className='removeSizeBTN' onClick={() => removeImage(index)} />
+                                    <TfiClose className='removeImgBtn' onClick={() => removeImage(index)} />
                                 </div>
                             ))}
                         </div>

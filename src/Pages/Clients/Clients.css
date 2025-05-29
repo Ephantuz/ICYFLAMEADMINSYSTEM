@@ -1,70 +1,308 @@
+/* Main Container */
 .client-table-container {
-  padding: 20px;
-  color: rgb(216, 216, 198);
-  background: rgb(7, 7, 21);
-  width: 100%;
-  max-width: 800px;
-}
-
-.title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-  border: 1px solid rgba(184, 184, 184, 0.2);
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #0c0c0e;
+  color: #e6f1ff;
   border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
-.client-table {
+/* Title */
+.client-table-container .title {
+  color: #64ffda;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Status Tabs */
+.client-table-container .status-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.client-table-container .tab-btn {
+  padding: 0.5rem 1rem;
+  background-color: #112240;
+  color: #ccd6f6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.client-table-container .tab-btn:hover {
+  background-color: #233554;
+  transform: translateY(-2px);
+}
+
+.client-table-container .tab-btn.active {
+  background-color: #64ffda;
+  color: #0a192f;
+  font-weight: 600;
+}
+
+/* Table Styles */
+.client-table-container .table-wrapper {
+  overflow-x: auto;
+  border-radius: 6px;
+  background-color: #060c16;
+  padding: 1px;
+}
+
+.client-table-container .client-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  margin-top: 1rem;
 }
 
-.client-table th,
-.client-table td {
-  padding: 12px 15px;
+.client-table-container .client-table th {
+  background-color: #1f2d4a;
+  color: #64ffda;
+  padding: 1rem;
   text-align: left;
-}
-
-.client-table th {
-  background-color: rgba(216, 216, 198, 0.1);
   cursor: pointer;
   user-select: none;
+  font-weight: 500;
+  position: relative;
 }
 
-.client-table tr {
-  border-bottom: 1px solid rgba(184, 184, 184, 0.1);
+.client-table-container .client-table th:hover {
+  background-color: #233554;
 }
 
-.client-table tr:hover {
-  background-color: rgba(216, 216, 198, 0.05);
+.client-table-container .client-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #233554;
+  vertical-align: middle;
 }
 
-.client-table td img.avatar {
-  width: 40px;
-  height: 40px;
+.client-table-container .client-table tr:last-child td {
+  border-bottom: none;
+}
+
+.client-table-container .client-table tr:hover {
+  background-color: #112240;
+}
+
+/* Badges */
+.client-table-container .badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.client-table-container .badge-success {
+  background-color: rgba(46, 125, 50, 0.2);
+  color: #66bb6a;
+}
+
+.client-table-container .badge-warning {
+  background-color: rgba(255, 143, 0, 0.2);
+  color: #ffa726;
+}
+
+.client-table-container .badge-danger {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #ef5350;
+}
+
+.client-table-container .badge-info {
+  background-color: rgba(2, 119, 189, 0.2);
+  color: #42a5f5;
+}
+
+.client-table-container .badge-secondary {
+  background-color: rgba(55, 71, 79, 0.2);
+  color: #b0bec5;
+}
+
+/* Action Buttons */
+.client-table-container .actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.client-table-container .action-btn {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.client-table-container .action-btn.approve {
+  background-color: rgba(46, 125, 50, 0.1);
+  color: #66bb6a;
+  border: 1px solid rgba(46, 125, 50, 0.3);
+}
+
+.client-table-container .action-btn.decline {
+  background-color: rgba(198, 40, 40, 0.1);
+  color: #ef5350;
+  border: 1px solid rgba(198, 40, 40, 0.3);
+}
+
+.client-table-container .action-btn.verify {
+  background-color: rgba(2, 119, 189, 0.1);
+  color: #42a5f5;
+  border: 1px solid rgba(2, 119, 189, 0.3);
+}
+
+.client-table-container .action-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.client-table-container .action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Alerts */
+.client-table-container .alert {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.client-table-container .alert-success {
+  background-color: rgba(46, 125, 50, 0.2);
+  color: #66bb6a;
+  border-left: 4px solid #66bb6a;
+}
+
+.client-table-container .alert-danger {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #ef5350;
+  border-left: 4px solid #ef5350;
+}
+
+/* Loading States */
+.client-table-container .loading-text {
+  text-align: center;
+  padding: 2rem;
+  color: #64ffda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.client-table-container .loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(100, 255, 218, 0.3);
+  border-top-color: #64ffda;
   border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-.client-table th:hover {
-  background-color: rgba(216, 216, 198, 0.2);
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Responsive tweaks */
-@media screen and (max-width: 768px) {
-  .client-table-container {
-    padding: 10px;
-  }
+.client-table-container .no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #0b0c11;
+}
 
-  .client-table th,
-  .client-table td {
-    padding: 8px 10px;
-  }
+/* Confirmation Modal */
+.client-table-container .confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(3, 7, 14, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: black;
+}
 
-  .title {
-    font-size: 18px;
-  }
+.client-table-container .modal-content {
+  background-color: #e7eaf0;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  color: black;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.client-table-container .modal-content h3 {
+  color: #020a08;
+  margin-bottom: 1rem;
+}
+
+.client-table-container .modal-content p {
+  margin-bottom: 1.5rem;
+  color: #0a0e1b !important;
+}
+
+.client-table-container .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.client-table-container .modal-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.client-table-container .modal-btn.cancel {
+  background-color: transparent;
+  color: #0c101f;
+  border: 1px solid #233554;
+}
+
+.client-table-container .modal-btn.cancel:hover {
+  background-color: rgba(35, 53, 84, 0.5);
+}
+
+.client-table-container .modal-btn.approved {
+  background-color: rgba(46, 125, 50, 0.2);
+  color: #66bb6a;
+  border: 1px solid rgba(46, 125, 50, 0.5);
+}
+
+.client-table-container .modal-btn.declined {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #ef5350;
+  border: 1px solid rgba(198, 40, 40, 0.5);
+}
+
+.client-table-container .modal-btn.verified {
+  background-color: rgba(2, 119, 189, 0.2);
+  color: #42a5f5;
+  border: 1px solid rgba(2, 119, 189, 0.5);
+}
+
+.client-table-container .modal-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

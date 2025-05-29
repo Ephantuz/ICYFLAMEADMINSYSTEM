@@ -1,64 +1,52 @@
-// features/paymentSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
-export const initializePayment = createAsyncThunk('payment/initializePayment', async (paymentData, thunkAPI) => {
-    try {
-        const response = await axios.post('https://quruxorganics-core.onrender.com/api/v1/auth/paystack/initialize', paymentData);
-        return response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
+// Async thunk to fetch admin payment data
+export const fetchAdminPayments = createAsyncThunk(
+    "adminPayments/fetchAdminPayments",
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get('https://icyflame-ltd-core.onrender.com/api/v1/orders/admin/payment', {
+                withCredentials: true, // Ensure cookies are sent
+            });
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.message || "Failed to fetch payments");
+        }
     }
-});
-export const verifyPayment = createAsyncThunk('payment/verifyPayment', async (reference, thunkAPI) => {
-    try {
-        const response = await axios.get(`https://quruxorganics-core.onrender.com/api/v1/auth/paystack/verify/${reference}`);
-        return response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
-    }
-});
+);
 
-const paymentSlice = createSlice({
-    name: 'payment',
+
+const adminPaymentSlice = createSlice({
+    name: "adminPayments",
     initialState: {
-        paymentUrl: '',
-        isLoading: false,
-        isError: false,
-        isSuccess: false,
-        message: '',
+        shopEarnings: {},
+        totalTaxEarnings: 0,
+        totalDeliveryEarnings: 0,
+        totalClientTaxEarnings: 0,
+        loading: false,
+        error: null,
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(initializePayment.pending, (state) => {
-                state.isLoading = true;
+            .addCase(fetchAdminPayments.pending, (state) => {
+                state.loading = true;
+                state.error = null;
             })
-            .addCase(initializePayment.fulfilled, (state, action) => {
-                console.log('Paystack Response:', action.payload); // Log to verify
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.paymentUrl = action.payload.data.data.authorization_url;
+            .addCase(fetchAdminPayments.fulfilled, (state, action) => {
+                state.loading = false;
+                state.shopEarnings = action.payload.shopEarnings;
+                state.totalTaxEarnings = action.payload.totalTaxEarnings;
+                state.totalDeliveryEarnings = action.payload.totalDeliveryEarnings;
+                state.totalClientTaxEarnings = action.payload.totalClientTaxEarnings;
             })
-            .addCase(initializePayment.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            })
-            .addCase(verifyPayment.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(verifyPayment.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.message = 'Payment Verified Successfully';
-            })
-            .addCase(verifyPayment.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
+            .addCase(fetchAdminPayments.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             });
     },
 });
 
-export default paymentSlice.reducer;
+export default adminPaymentSlice.reducer;

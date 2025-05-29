@@ -28,6 +28,10 @@ const Menu = () => {
                         <AiFillHome />
                         <span className="listItemTitle">Home</span>
                     </Link>
+                    <Link to='/stats' className='listItem'>
+                        <AiFillHome />
+                        <span className="listItemTitle">Stats</span>
+                    </Link>
                     <Link to='/products' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Products</span>
@@ -35,6 +39,14 @@ const Menu = () => {
                 </div>
                 <div className="menu-item">
                     <span className="title">Accounts</span>
+                    <Link to='/adminpayments' className='listItem'>
+                        <FaUserAlt />
+                        <span className="listItemTitle">Payments Summary</span>
+                    </Link>
+                    <Link to='/processpayments' className='listItem'>
+                        <FaUserAlt />
+                        <span className="listItemTitle">Handle Payments</span>
+                    </Link>
                     <Link to='/salesincome' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Sales&Orders</span>
@@ -43,10 +55,10 @@ const Menu = () => {
                         <FaUserAlt />
                         <span className="listItemTitle">Dispach</span>
                     </Link>
-                    <Link to='/coupons' className='listItem'>
+                    {/* <Link to='/coupons' className='listItem'>
                         <FaUserAlt />
                         <span className="listItemTitle">Coupons</span>
-                    </Link>
+                    </Link> */}
 
                     {/* <Link to='/Deliveries' className='listItem'>
                         <BsCartFill />
@@ -64,17 +76,17 @@ const Menu = () => {
                         <BsDatabaseFillUp />
                         <span className="listItemTitle">Departments</span>
                     </Link> */}
-                    <Link to='/clients' className='listItem'>
-                        <FaUserAlt />
-                        <span className="listItemTitle">Customers</span>
-                    </Link>
                     <Link to='/vendors' className='listItem'>
-                        <BsDatabaseFillUp />
+                        <FaUserAlt />
                         <span className="listItemTitle">Vendors</span>
+                    </Link>
+                    <Link to='/locations' className='listItem'>
+                        <BsDatabaseFillUp />
+                        <span className="listItemTitle">Delivery Locations</span>
                     </Link>
 
                 </div>
-                <div className="menu-item">
+                {/* <div className="menu-item">
                     <span className="title">Marketting</span>
                     <Link to='/brands' className='listItem'>
                         <BsBarChartLineFill />
@@ -85,12 +97,16 @@ const Menu = () => {
                         <span className="listItemTitle">Campaigns</span>
                     </Link>
 
-                </div>
+                </div> */}
                 <div className="menu-item">
                     <span className="title">Logs</span>
                     <Link to='/settings' className='listItem'>
                         <SiLogseq />
                         <span className="listItemTitle">Settings</span>
+                    </Link>
+                    <Link to='/onboarding?review=true' className='listItem'>
+                        <SiLogseq />
+                        <span className="listItemTitle">Terms & Conditions</span>
                     </Link>
                     <Link to='/logout' className='listItem' onClick={handleLogout}>
                         <BsBarChartLineFill />

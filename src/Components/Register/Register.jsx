@@ -202,7 +202,7 @@ const RegisterShop = () => {
                     <p className="credit">Have an Account? <Link to='/login'>Login</Link></p>
                 </div>
             </div>
-            <p className="credit">Powered by <a href="https://encryptfirm.vercel.app" target="_blank" rel="noopener noreferrer">e|ncrypt</a> © 2024</p>
+            <p className="credit2">Powered by <a href="https://encryptfirm.vercel.app" target="_blank" rel="noopener noreferrer">e|ncrypt</a> © 2024</p>
         </div>
     );
 };
