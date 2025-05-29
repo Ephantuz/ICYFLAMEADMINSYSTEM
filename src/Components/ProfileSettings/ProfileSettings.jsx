@@ -272,8 +272,7 @@ const ProfileSettings = () => {
                                         type={visible2 ? "text" : "password"}
                                         name="newPassword"
                                         value={newPassword}
-                                        placeholder="New Password"
-                                        required
+                                        placeholder="New Password 2"
                                         onChange={onChange}
                                     />
                                     <div className="icon-wrapper">
