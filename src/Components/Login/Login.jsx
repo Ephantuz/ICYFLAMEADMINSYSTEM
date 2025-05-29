@@ -126,7 +126,7 @@ function Login() {
                                 <Link to='/register' className='BodyBackSign'>
                                     <VscGitPullRequestCreate className='BackSign' /> Create new account
                                 </Link>
-                                <p>Create a new account if you don't have one. The Admin will approve you after successful registration.</p>
+                                <p>Create a new account if you don't have one. The Admin will approve you after successfull registration.</p>
                             </div>
                         </>
                     </>
